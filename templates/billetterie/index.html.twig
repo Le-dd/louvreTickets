@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% form_theme formBooking 'bootstrap_4_layout.html.twig' %}
+
+{% block title %} Billeterie : Acceuil {% endblock %}
+
+{% block body %}
+  <main class="billeterie index ">
+    <section class="container part1">
+      <h1>Choisissez vos billet</h1>
+
+      {{form(formBooking)}}
+
+
+    </section>
+    <section class="container part2">
+      <h2>Liste des billet choisi</h2>
+
+
+
+    </section>
+
+  </main>
+{% endblock %}
