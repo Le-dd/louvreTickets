@@ -43,13 +43,13 @@ class Booking
 
     /**
      * @ORM\OneToOne(targetEntity="App\Entity\Rate", cascade={"persist", "remove"})
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=false, name="rate_id")
      */
     private $rateId;
 
     /**
      * @ORM\OneToOne(targetEntity="App\Entity\Type", cascade={"persist", "remove"})
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=false, name="type_id")
      */
     private $typeId;
 

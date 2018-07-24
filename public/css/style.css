@@ -1,0 +1,112 @@
+html body {
+  font-family: 'Montserrat', sans-serif;
+
+  background: #d13138; /* Old browsers */
+  background: -moz-linear-gradient(-45deg, #d13138 29%, #fc4237 78%, #fc4237 78%, #fd6b35 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(-45deg, #d13138 29%,#fc4237 78%,#fc4237 78%,#fd6b35 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(135deg, #d13138 29%,#fc4237 78%,#fc4237 78%,#fd6b35 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d13138', endColorstr='#fd6b35',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+  background-size: 100%;
+  background-repeat: no-repeat;
+}
+
+.billeterie h1, .billeterie h2, .billeterie h3, .billeterie h4, .billeterie h5, .billeterie h6{
+
+  color: #f7f7f7;
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 700;
+  padding:20px 0 ;
+  text-transform: none;
+  text-shadow: 0px 3px 5px rgba( 0,0,0,0.30 );
+}
+
+.index .part1 h1{
+  color: #000;
+  padding-top: 50px;
+
+}
+
+.index .part1{
+  position: relative;
+  background-color: #f7f7f7;
+  border-radius: 0 0 5px 5px;
+  box-shadow: 0px 2px 5px rgba( 0,0,0,0.30 );
+  z-index: 2;
+  padding: 10px 20px;
+
+}
+
+.index .part1 .form-control{
+
+  background-color: #000;
+  border-radius: 100px;
+  box-shadow: 0px 2px 5px rgba( 0,0,0,0.30 );
+  color: #f7f7f7;
+
+
+}
+
+.index .part1 .form-control:focus{
+
+  background-color: #1e1e1e;
+}
+
+
+
+
+
+
+.index .part1 label, .index .part1 .col-form-label {
+  color: #000;
+  font-size: 1rem;
+  font-weight: 500;
+  padding:5px 0 ;
+  text-shadow: 0px 3px 5px rgba( 0,0,0,0.30 );
+}
+
+
+
+
+
+header .navbar {
+
+  padding: 0;
+  overflow: hidden;
+  box-shadow: 0px 2px 5px rgba( 0,0,0,0.30 );
+
+}
+
+.logoLouvre{
+  padding-left: 1rem;
+}
+
+html body .navbar-dark .texteBilletterie{
+  color: #4b4b4b;
+  font-size: 7rem;
+  font-weight: 500;
+  position: absolute;
+  right: -5%;
+  top:-67%;
+
+}
+
+html body .navbar-dark .texteBilletterie:hover{
+  color: #424242;
+
+
+}
+
+@media (min-width: 992px){
+header .navbar-expand-lg {
+  justify-content: space-between;
+}
+
+}
+@media (min-width: 1150px){
+
+
+html body .navbar-dark .texteBilletterie{
+  right: -4%;
+}
+}
