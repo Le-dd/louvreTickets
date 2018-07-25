@@ -53,10 +53,6 @@ html body {
 }
 
 
-
-
-
-
 .index .part1 label, .index .part1 .col-form-label {
   color: #000;
   font-size: 1rem;
@@ -65,14 +61,9 @@ html body {
   text-shadow: 0px 3px 5px rgba( 0,0,0,0.30 );
 }
 
-
-
-
-
 header .navbar {
 
   padding: 0;
-  overflow: hidden;
   box-shadow: 0px 2px 5px rgba( 0,0,0,0.30 );
 
 }
@@ -81,32 +72,44 @@ header .navbar {
   padding-left: 1rem;
 }
 
-html body .navbar-dark .texteBilletterie{
-  color: #4b4b4b;
-  font-size: 7rem;
-  font-weight: 500;
-  position: absolute;
-  right: -5%;
-  top:-67%;
+.flatpickr-calendar {
+  background-color: #000;
+}
+.flatpickr-calendar.arrowBottom:before{
+  border-top-color: #000;
+
+}
+.flatpickr-calendar.arrowBottom:after{
+    border-top-color: #000;
+}
+
+.btn-danger {
+  display: block;
+  width: 220px;
+
+  margin: 0 auto;
+  background-color: #fd6b35;
+  border: none;
+  text-transform: none;
+  font-size: 1rem;
+  border-radius: 100px;
+  -webkit-appearance: none;
+
+  box-shadow: 0px 5px 5px rgba( 0,0,0,0.30 );
+
+  margin-bottom: 20px;
 
 }
 
-html body .navbar-dark .texteBilletterie:hover{
-  color: #424242;
+.btn-danger:hover {
 
+  background-color: #fc4237;
 
-}
-
-@media (min-width: 992px){
-header .navbar-expand-lg {
-  justify-content: space-between;
-}
+  box-shadow: 0px 3px 5px rgba( 0,0,0,0.30 );
 
 }
-@media (min-width: 1150px){
 
+.index .part1 .lastForm{
+  margin-bottom: 30px;
 
-html body .navbar-dark .texteBilletterie{
-  right: -4%;
-}
 }

@@ -44,27 +44,28 @@ class __TwigTemplate_fc4caf68f78bbcdd9ae93a9b02af2bd24f164d22c81d49708fdf65fa588
 
         <link rel=\"stylesheet\" href=\"https://fonts.googleapis.com/css?family=Montserrat:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i\">
         <link rel=\"stylesheet\" href=\"https://bootswatch.com/4/lux/bootstrap.min.css\">
-        <link rel=\"stylesheet\" href=\"/css/style.css\">
-
         ";
-        // line 14
+        // line 12
         $this->displayBlock('stylesheets', $context, $blocks);
-        // line 15
-        echo "    </head>
+        // line 13
+        echo "        <link rel=\"stylesheet\" href=\"/css/style.css\">
+
+
+    </head>
     <body>
       <header>
         <nav class=\"navbar navbar-expand-lg navbar-dark bg-primary\">
             <a class=\"navbar-brand logoLouvre\" href=\"#\"> <img src=\"/image/logo.png\" alt=\"logo du site\"></a>
-            <a class=\"navbar-brand texteBilletterie\" href=\"#\">Billetterie</a>
+            
         </nav>
       </header>
         ";
-        // line 23
-        $this->displayBlock('body', $context, $blocks);
         // line 24
+        $this->displayBlock('body', $context, $blocks);
+        // line 25
         echo "        ";
         $this->displayBlock('javascripts', $context, $blocks);
-        // line 25
+        // line 26
         echo "    </body>
 </html>
 ";
@@ -94,7 +95,7 @@ class __TwigTemplate_fc4caf68f78bbcdd9ae93a9b02af2bd24f164d22c81d49708fdf65fa588
 
     }
 
-    // line 14
+    // line 12
     public function block_stylesheets($context, array $blocks = array())
     {
         $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e = $this->extensions["Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension"];
@@ -111,7 +112,7 @@ class __TwigTemplate_fc4caf68f78bbcdd9ae93a9b02af2bd24f164d22c81d49708fdf65fa588
 
     }
 
-    // line 23
+    // line 24
     public function block_body($context, array $blocks = array())
     {
         $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e = $this->extensions["Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension"];
@@ -128,7 +129,7 @@ class __TwigTemplate_fc4caf68f78bbcdd9ae93a9b02af2bd24f164d22c81d49708fdf65fa588
 
     }
 
-    // line 24
+    // line 25
     public function block_javascripts($context, array $blocks = array())
     {
         $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e = $this->extensions["Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension"];
@@ -152,7 +153,7 @@ class __TwigTemplate_fc4caf68f78bbcdd9ae93a9b02af2bd24f164d22c81d49708fdf65fa588
 
     public function getDebugInfo()
     {
-        return array (  132 => 24,  115 => 23,  98 => 14,  80 => 5,  68 => 25,  65 => 24,  63 => 23,  53 => 15,  51 => 14,  39 => 5,  33 => 1,);
+        return array (  133 => 25,  116 => 24,  99 => 12,  81 => 5,  69 => 26,  66 => 25,  64 => 24,  51 => 13,  49 => 12,  39 => 5,  33 => 1,);
     }
 
     public function getSourceContext()
@@ -168,15 +169,16 @@ class __TwigTemplate_fc4caf68f78bbcdd9ae93a9b02af2bd24f164d22c81d49708fdf65fa588
 
         <link rel=\"stylesheet\" href=\"https://fonts.googleapis.com/css?family=Montserrat:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i\">
         <link rel=\"stylesheet\" href=\"https://bootswatch.com/4/lux/bootstrap.min.css\">
+        {% block stylesheets %}{% endblock %}
         <link rel=\"stylesheet\" href=\"/css/style.css\">
 
-        {% block stylesheets %}{% endblock %}
+
     </head>
     <body>
       <header>
         <nav class=\"navbar navbar-expand-lg navbar-dark bg-primary\">
             <a class=\"navbar-brand logoLouvre\" href=\"#\"> <img src=\"/image/logo.png\" alt=\"logo du site\"></a>
-            <a class=\"navbar-brand texteBilletterie\" href=\"#\">Billetterie</a>
+            
         </nav>
       </header>
         {% block body %}{% endblock %}

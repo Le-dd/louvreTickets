@@ -1,5 +1,8 @@
 {% extends 'base.html.twig' %}
-
+{% block stylesheets %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.5.1/flatpickr.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.5.1/themes/dark.css">
+{% endblock %}
 {% form_theme formBooking 'bootstrap_4_layout.html.twig' %}
 
 {% block title %} Billeterie : Acceuil {% endblock %}
@@ -8,8 +11,18 @@
   <main class="billeterie index ">
     <section class="container part1">
       <h1>Choisissez vos billet</h1>
+        {{ form_start(formBooking) }}
+          {{ form_row(formBooking.name, { 'attr':{'placeholder': "Nom"} , 'label': 'Votre nom' }) }}
+          {{ form_row(formBooking.firstName, { 'attr':{'placeholder': "Prénom"} ,  'label': 'Votre prénom' }) }}
+          {{ form_row(formBooking.country, { 'attr':{'placeholder': "Pays"} , 'label': 'Votre pays' }) }}
+          {{ form_row(formBooking.typeId, { 'label': 'Vous venez visiter pour:' }) }}
+          {{ form_row(formBooking.visitDate, {'attr':{'class': 'datepicker'} , 'label': 'le jour de votre visite' }) }}
+          {{ form_row(formBooking.rateId, { 'label': 'Quel type de billet voulez vous?' }) }}
+          {{ form_row(formBooking.birthDate, {'attr':{'class': 'datepicker lastForm','placeholder': "Votre date de naissance"} , 'label': 'Votre date d\'anniversaire' }) }}
 
-      {{form(formBooking)}}
+          <boutton type="submit" class="btn btn-danger">Ajouter un billet </button>
+
+        {{ form_end(formBooking) }}
 
 
     </section>
@@ -21,4 +34,11 @@
     </section>
 
   </main>
+{% endblock %}
+{% block javascripts %}
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.5.1/flatpickr.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.5.1/l10n/fr.js"></script>
+<script src="/js/MyFlatpickr.js"></script>
+
 {% endblock %}

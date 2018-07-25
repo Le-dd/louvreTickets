@@ -36,6 +36,8 @@ class Booking
      */
     private $birthDate;
 
+  
+
     /**
      * @ORM\Column(type="string", length=255)
      */
@@ -52,6 +54,11 @@ class Booking
      * @ORM\JoinColumn(nullable=false, name="type_id")
      */
     private $typeId;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $visitDate;
 
     public function getId()
     {
@@ -138,6 +145,18 @@ class Booking
     public function setTypeId(Type $typeId): self
     {
         $this->typeId = $typeId;
+
+        return $this;
+    }
+
+    public function getVisitDate(): ?\DateTimeInterface
+    {
+        return $this->visitDate;
+    }
+
+    public function setVisitDate(\DateTimeInterface $visitDate): self
+    {
+        $this->visitDate = $visitDate;
 
         return $this;
     }

@@ -71,4 +71,8 @@ class Rate
 
         return $this;
     }
+
+    public function getLabelForm(){
+      return "Le tarif \"{$this->name}\" {$this->status} à {$this->price}€";
+    }
 }

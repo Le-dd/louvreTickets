@@ -71,4 +71,11 @@ class Type
 
         return $this;
     }
+
+    public function getLabelForm(){
+      $start = date_format($this->startTime, 'H:i');
+      $end = date_format($this->endTime, 'H:i');
+      return "La {$this->name} de {$start} h à {$end} h";
+    }
+
 }
