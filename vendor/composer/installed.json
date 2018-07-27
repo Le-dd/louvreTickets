@@ -3365,17 +3365,17 @@
     },
     {
         "name": "symfony/flex",
-        "version": "v1.0.84",
-        "version_normalized": "1.0.84.0",
+        "version": "v1.0.85",
+        "version_normalized": "1.0.85.0",
         "source": {
             "type": "git",
             "url": "https://github.com/symfony/flex.git",
-            "reference": "7ede6446afac01e6e381db8c8c6fddb7c05a2aa7"
+            "reference": "48bf0eddadb004f95f6875b533ff1fb234bfc3f4"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/symfony/flex/zipball/7ede6446afac01e6e381db8c8c6fddb7c05a2aa7",
-            "reference": "7ede6446afac01e6e381db8c8c6fddb7c05a2aa7",
+            "url": "https://api.github.com/repos/symfony/flex/zipball/48bf0eddadb004f95f6875b533ff1fb234bfc3f4",
+            "reference": "48bf0eddadb004f95f6875b533ff1fb234bfc3f4",
             "shasum": ""
         },
         "require": {
@@ -3386,7 +3386,7 @@
             "composer/composer": "^1.0.2",
             "symfony/phpunit-bridge": "^3.2.8"
         },
-        "time": "2018-07-19T06:01:11+00:00",
+        "time": "2018-07-25T09:16:52+00:00",
         "type": "composer-plugin",
         "extra": {
             "branch-alias": {

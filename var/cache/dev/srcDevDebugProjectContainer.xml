@@ -4307,17 +4307,18 @@
         <argument>make:migration</argument>
       </call>
     </service>
-    <service id=".service_locator.OLaif_L" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+    <service id=".service_locator.2PgTpLl" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="manager" type="service" id="doctrine.orm.default_entity_manager"/>
+        <argument key="session" type="service" id="session"/>
       </argument>
     </service>
-    <service id=".service_locator.ZWT7Tuu" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+    <service id=".service_locator.46PNGkV" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
-        <argument key="App\Controller\BilletterieController::index" type="service" id=".service_locator.OLaif_L"/>
-        <argument key="App\Controller\BilletterieController:index" type="service" id=".service_locator.OLaif_L"/>
+        <argument key="App\Controller\BilletterieController::index" type="service" id=".service_locator.2PgTpLl"/>
+        <argument key="App\Controller\BilletterieController:index" type="service" id=".service_locator.2PgTpLl"/>
       </argument>
     </service>
     <service id=".service_locator.yQVjGlt" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
@@ -4559,7 +4560,7 @@
       <argument type="service" id="security.token_storage"/>
     </service>
     <service id="debug.argument_resolver.service.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver" public="false">
-      <argument type="service" id=".service_locator.ZWT7Tuu"/>
+      <argument type="service" id=".service_locator.46PNGkV"/>
     </service>
     <service id="debug.argument_resolver.default.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver" public="false"/>
     <service id="debug.argument_resolver.variadic.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\VariadicValueResolver" public="false"/>
@@ -4935,7 +4936,7 @@
     <service id="Psr\Log\LoggerInterface" alias="monolog.logger" public="false"/>
     <service id="sensio_framework_extra.converter.doctrine.orm.expression_language" alias="sensio_framework_extra.converter.doctrine.orm.expression_language.default" public="false"/>
     <service id="sensio_framework_extra.security.expression_language" alias="sensio_framework_extra.security.expression_language.default" public="false"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator.ZWT7Tuu"/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator.46PNGkV"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem" public="false"/>
     <service id="twig.loader" alias="twig.loader.native_filesystem"/>
     <service id=".service_locator.AoifO_3" alias=".2_ServiceLocator~0n.331A" public="false"/>

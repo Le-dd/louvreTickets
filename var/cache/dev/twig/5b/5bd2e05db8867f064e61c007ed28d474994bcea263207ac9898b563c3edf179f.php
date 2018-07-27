@@ -131,7 +131,7 @@ class __TwigTemplate_fae59332f93f9e3d331c63137d81fbd43759c0f0ca07e9a91192cb07248
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["formBooking"]) || array_key_exists("formBooking", $context) ? $context["formBooking"] : (function () { throw new Twig_Error_Runtime('Variable "formBooking" does not exist.', 21, $this->source); })()), "birthDate", array()), 'row', array("attr" => array("class" => "datepicker lastForm", "placeholder" => "Votre date de naissance"), "label" => "Votre date d'anniversaire"));
         echo "
 
-          <boutton type=\"submit\" class=\"btn btn-danger\">Ajouter un billet </button>
+          <button type=\"submit\" class=\"btn btn-danger\">Ajouter un billet </button>
 
         ";
         // line 25
@@ -220,7 +220,7 @@ class __TwigTemplate_fae59332f93f9e3d331c63137d81fbd43759c0f0ca07e9a91192cb07248
           {{ form_row(formBooking.rateId, { 'label': 'Quel type de billet voulez vous?' }) }}
           {{ form_row(formBooking.birthDate, {'attr':{'class': 'datepicker lastForm','placeholder': \"Votre date de naissance\"} , 'label': 'Votre date d\\'anniversaire' }) }}
 
-          <boutton type=\"submit\" class=\"btn btn-danger\">Ajouter un billet </button>
+          <button type=\"submit\" class=\"btn btn-danger\">Ajouter un billet </button>
 
         {{ form_end(formBooking) }}
 
