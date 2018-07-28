@@ -56,16 +56,20 @@ class __TwigTemplate_fc4caf68f78bbcdd9ae93a9b02af2bd24f164d22c81d49708fdf65fa588
       <header>
         <nav class=\"navbar navbar-expand-lg navbar-dark bg-primary\">
             <a class=\"navbar-brand logoLouvre\" href=\"#\"> <img src=\"/image/logo.png\" alt=\"logo du site\"></a>
-            
+
         </nav>
       </header>
         ";
         // line 24
         $this->displayBlock('body', $context, $blocks);
         // line 25
-        echo "        ";
+        echo "      <footer>
+        <p>I <span>♥</span> Louvre©2018 | Mentions legals </p>
+      </footer>
+        ";
+        // line 28
         $this->displayBlock('javascripts', $context, $blocks);
-        // line 26
+        // line 29
         echo "    </body>
 </html>
 ";
@@ -129,7 +133,7 @@ class __TwigTemplate_fc4caf68f78bbcdd9ae93a9b02af2bd24f164d22c81d49708fdf65fa588
 
     }
 
-    // line 25
+    // line 28
     public function block_javascripts($context, array $blocks = array())
     {
         $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e = $this->extensions["Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension"];
@@ -153,7 +157,7 @@ class __TwigTemplate_fc4caf68f78bbcdd9ae93a9b02af2bd24f164d22c81d49708fdf65fa588
 
     public function getDebugInfo()
     {
-        return array (  133 => 25,  116 => 24,  99 => 12,  81 => 5,  69 => 26,  66 => 25,  64 => 24,  51 => 13,  49 => 12,  39 => 5,  33 => 1,);
+        return array (  137 => 28,  120 => 24,  103 => 12,  85 => 5,  73 => 29,  71 => 28,  66 => 25,  64 => 24,  51 => 13,  49 => 12,  39 => 5,  33 => 1,);
     }
 
     public function getSourceContext()
@@ -178,10 +182,13 @@ class __TwigTemplate_fc4caf68f78bbcdd9ae93a9b02af2bd24f164d22c81d49708fdf65fa588
       <header>
         <nav class=\"navbar navbar-expand-lg navbar-dark bg-primary\">
             <a class=\"navbar-brand logoLouvre\" href=\"#\"> <img src=\"/image/logo.png\" alt=\"logo du site\"></a>
-            
+
         </nav>
       </header>
         {% block body %}{% endblock %}
+      <footer>
+        <p>I <span>♥</span> Louvre©2018 | Mentions legals </p>
+      </footer>
         {% block javascripts %}{% endblock %}
     </body>
 </html>

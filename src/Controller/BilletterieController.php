@@ -15,6 +15,7 @@ use App\Entity\Rate;
 use App\Entity\Type;
 use App\Repository\RateRepository;
 use App\Repository\TypeRepository;
+use Symfony\Component\Intl\Intl;
 
 class BilletterieController extends Controller
 {
@@ -55,40 +56,70 @@ class BilletterieController extends Controller
         ]);
     }
 
-/**
- * Change string dateTime to object DateTime
- */
-    private function transToSubmit($response){
+  /**
+   * @Route("/billetDelete", name="billetDelete")
+   */
+  public function billetDelete(Request $request,SessionInterface $session)
+  {
+    $idDelete = intval($request->request->get('idBillet'));
+    $arrayResut =json_decode($session->get('resultForm'),true);
+    unset($arrayResut[$idDelete]);
+    $arrayResut = array_values($arrayResut);
+    $session->set('resultForm', json_encode($arrayResut));
+    return $this->redirectToRoute('billetterie', [], 301);
+  }
 
-      $response['visitDate']=new \DateTime($response['visitDate']);
-      $response['birthDate']=new \DateTime($response['birthDate']);
-      return $response;
+  /**
+   * Change string dateTime to object DateTime
+   */
+  private function transToSubmit($response){
 
-    }
+    $response['visitDate']=new \DateTime($response['visitDate']);
+    $response['birthDate']=new \DateTime($response['birthDate']);
+
+    return $response;
+
+  }
 
   /**
    * add new value to booking for twig
    * @param  mixed
    * @return mixed
    */
-      private function addValue(array $response){
+  private function addValue(array $response){
 
-        for($i = 0; $i < count($response); ++$i){
+    for($i = 0; $i < count($response); ++$i){
 
-          $response[$i]['idResponse'] = $i;
-          $repoRate= $this->getDoctrine()->getRepository(Rate::class);
-          $idRate=intval($response[$i]['rateId']);
-          $rate= $repoRate->findById($idRate);
-          $rate= $rate[0]->getName();
-          $response[$i]['nameRate']= $rate;
-          $repoType= $this->getDoctrine()->getRepository(Type::class);
-          $type=$repoType->find($response[$i]['typeId']);
-          $response[$i]['nameType'] = $type->getName();
+      $response[$i]=$this->transToSubmit($response[$i]);
+      $response[$i]['idResponse'] = $i;
+      $repoRate= $this->getDoctrine()->getRepository(Rate::class);
+      $idRate=intval($response[$i]['rateId']);
+      $rate= $repoRate->findById($idRate);
+      $rateName= $rate[0]->getName();
+      $ratePrice= $rate[0]->getPrice();
+      $response[$i]['nameRate']= $rateName;
+      $response[$i]['priceRate']= $ratePrice;
+      $repoType= $this->getDoctrine()->getRepository(Type::class);
+      $type=$repoType->find($response[$i]['typeId']);
+      $response[$i]['nameType'] = $type->getName();
+      $response[$i]['nameCountry']= Intl::getRegionBundle()->getCountryName($response[$i]['country']);
 
 
-        }
+    }
 
-        return $response;
+    return $response;
 
-      }
+  }
+
+  /**
+   * delete billet to session
+   */
+  private function deleteOneBillet(array $valueSession,int $position){
+
+    $response['visitDate']=new \DateTime($response['visitDate']);
+    $response['birthDate']=new \DateTime($response['birthDate']);
+
+    return $response;
+
+  }
 }

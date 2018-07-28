@@ -9,27 +9,49 @@
 
 {% block body %}
   <main class="billeterie index ">
-    <section class="container part1">
-      <h1>Choisissez vos billet</h1>
-        {{ form_start(formBooking) }}
-          {{ form_row(formBooking.name, { 'attr':{'placeholder': "Nom"} , 'label': 'Votre nom' }) }}
-          {{ form_row(formBooking.firstName, { 'attr':{'placeholder': "Prénom"} ,  'label': 'Votre prénom' }) }}
-          {{ form_row(formBooking.country, { 'attr':{'placeholder': "Pays"} , 'label': 'Votre pays' }) }}
-          {{ form_row(formBooking.typeId, { 'label': 'Vous venez visiter pour:' }) }}
-          {{ form_row(formBooking.visitDate, {'attr':{'class': 'datepicker'} , 'label': 'le jour de votre visite' }) }}
-          {{ form_row(formBooking.rateId, { 'label': 'Quel type de billet voulez vous?' }) }}
-          {{ form_row(formBooking.birthDate, {'attr':{'class': 'datepicker lastForm','placeholder': "Votre date de naissance"} , 'label': 'Votre date d\'anniversaire' }) }}
+    <section class="container ">
+      <div class="part1">
+        <h1>Choisissez vos billets</h1>
+          {{ form_start(formBooking) }}
+            {{ form_row(formBooking.name, { 'attr':{'placeholder': "Nom"} , 'label': 'Votre nom' }) }}
+            {{ form_row(formBooking.firstName, { 'attr':{'placeholder': "Prénom"} ,  'label': 'Votre prénom' }) }}
+            {{ form_row(formBooking.country, { 'attr':{'placeholder': "Pays"} , 'label': 'Votre pays' }) }}
+            {{ form_row(formBooking.typeId, { 'label': 'Vous venez visiter pour:' }) }}
+            {{ form_row(formBooking.visitDate, {'attr':{'class': 'datepicker'} , 'label': 'le jour de votre visite' }) }}
+            {{ form_row(formBooking.rateId, { 'label': 'Quel type de billet voulez vous?' }) }}
+            {{ form_row(formBooking.birthDate, {'attr':{'class': 'datepicker lastForm','placeholder': "Votre date de naissance"} , 'label': 'Votre date d\'anniversaire' }) }}
 
-          <button type="submit" class="btn btn-danger">Ajouter un billet </button>
+            <button type="submit" class="btn btn-danger">Ajouter un billet</button>
 
-        {{ form_end(formBooking) }}
-
-
+          {{ form_end(formBooking) }}
+        </div>
     </section>
     <section class="container part2">
-      <h2>Liste des billet choisi</h2>
+      <h2>Liste des billets choisis</h2>
 
+      {% if formBillet is not null %}
+        {% for billet in formBillet %}
 
+      <div class="card billet-c" >
+        <div class="card-header bg-primary billet-c-h">
+          <p > <span>{{billet.name}}</span> <span>{{billet.firstName}}</span> de {{billet.nameCountry}}</p>
+          <form  action="{{ path('billetDelete') }}" method="post">
+            <input type="hidden" name="idBillet" value="billet.idResponse">
+            <button type="submit" class="btn btn-danger btnCross">X</button>
+
+          </form>
+        </div>
+        <div class="card-body bg-secondary billet-c-b">
+
+          <p class="card-text billet-c-t">Visite la {{billet.nameType}}  au tarif "{{billet.nameRate}}" le {{billet.visitDate |date("d/m/Y")}}</p>
+
+        </div>
+      </div>
+      {% endfor %}
+      <a class="btn btn-primary" href="#">Suivant ►</a>
+      {% else %}
+      <p class="p-blanc">Venez decouvrir les oeuvre des maitre d'autre ages. Le musée du Louvre vous acceuil, prenez un billet!</p>
+      {% endif %}
 
     </section>
 

@@ -96,55 +96,110 @@ class __TwigTemplate_fae59332f93f9e3d331c63137d81fbd43759c0f0ca07e9a91192cb07248
 
         // line 11
         echo "  <main class=\"billeterie index \">
-    <section class=\"container part1\">
-      <h1>Choisissez vos billet</h1>
-        ";
-        // line 14
-        echo         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["formBooking"]) || array_key_exists("formBooking", $context) ? $context["formBooking"] : (function () { throw new Twig_Error_Runtime('Variable "formBooking" does not exist.', 14, $this->source); })()), 'form_start');
-        echo "
+    <section class=\"container \">
+      <div class=\"part1\">
+        <h1>Choisissez vos billets</h1>
           ";
         // line 15
-        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["formBooking"]) || array_key_exists("formBooking", $context) ? $context["formBooking"] : (function () { throw new Twig_Error_Runtime('Variable "formBooking" does not exist.', 15, $this->source); })()), "name", array()), 'row', array("attr" => array("placeholder" => "Nom"), "label" => "Votre nom"));
+        echo         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["formBooking"]) || array_key_exists("formBooking", $context) ? $context["formBooking"] : (function () { throw new Twig_Error_Runtime('Variable "formBooking" does not exist.', 15, $this->source); })()), 'form_start');
         echo "
-          ";
+            ";
         // line 16
-        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["formBooking"]) || array_key_exists("formBooking", $context) ? $context["formBooking"] : (function () { throw new Twig_Error_Runtime('Variable "formBooking" does not exist.', 16, $this->source); })()), "firstName", array()), 'row', array("attr" => array("placeholder" => "Prénom"), "label" => "Votre prénom"));
+        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["formBooking"]) || array_key_exists("formBooking", $context) ? $context["formBooking"] : (function () { throw new Twig_Error_Runtime('Variable "formBooking" does not exist.', 16, $this->source); })()), "name", array()), 'row', array("attr" => array("placeholder" => "Nom"), "label" => "Votre nom"));
         echo "
-          ";
+            ";
         // line 17
-        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["formBooking"]) || array_key_exists("formBooking", $context) ? $context["formBooking"] : (function () { throw new Twig_Error_Runtime('Variable "formBooking" does not exist.', 17, $this->source); })()), "country", array()), 'row', array("attr" => array("placeholder" => "Pays"), "label" => "Votre pays"));
+        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["formBooking"]) || array_key_exists("formBooking", $context) ? $context["formBooking"] : (function () { throw new Twig_Error_Runtime('Variable "formBooking" does not exist.', 17, $this->source); })()), "firstName", array()), 'row', array("attr" => array("placeholder" => "Prénom"), "label" => "Votre prénom"));
         echo "
-          ";
+            ";
         // line 18
-        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["formBooking"]) || array_key_exists("formBooking", $context) ? $context["formBooking"] : (function () { throw new Twig_Error_Runtime('Variable "formBooking" does not exist.', 18, $this->source); })()), "typeId", array()), 'row', array("label" => "Vous venez visiter pour:"));
+        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["formBooking"]) || array_key_exists("formBooking", $context) ? $context["formBooking"] : (function () { throw new Twig_Error_Runtime('Variable "formBooking" does not exist.', 18, $this->source); })()), "country", array()), 'row', array("attr" => array("placeholder" => "Pays"), "label" => "Votre pays"));
         echo "
-          ";
+            ";
         // line 19
-        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["formBooking"]) || array_key_exists("formBooking", $context) ? $context["formBooking"] : (function () { throw new Twig_Error_Runtime('Variable "formBooking" does not exist.', 19, $this->source); })()), "visitDate", array()), 'row', array("attr" => array("class" => "datepicker"), "label" => "le jour de votre visite"));
+        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["formBooking"]) || array_key_exists("formBooking", $context) ? $context["formBooking"] : (function () { throw new Twig_Error_Runtime('Variable "formBooking" does not exist.', 19, $this->source); })()), "typeId", array()), 'row', array("label" => "Vous venez visiter pour:"));
         echo "
-          ";
+            ";
         // line 20
-        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["formBooking"]) || array_key_exists("formBooking", $context) ? $context["formBooking"] : (function () { throw new Twig_Error_Runtime('Variable "formBooking" does not exist.', 20, $this->source); })()), "rateId", array()), 'row', array("label" => "Quel type de billet voulez vous?"));
+        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["formBooking"]) || array_key_exists("formBooking", $context) ? $context["formBooking"] : (function () { throw new Twig_Error_Runtime('Variable "formBooking" does not exist.', 20, $this->source); })()), "visitDate", array()), 'row', array("attr" => array("class" => "datepicker"), "label" => "le jour de votre visite"));
         echo "
-          ";
+            ";
         // line 21
-        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["formBooking"]) || array_key_exists("formBooking", $context) ? $context["formBooking"] : (function () { throw new Twig_Error_Runtime('Variable "formBooking" does not exist.', 21, $this->source); })()), "birthDate", array()), 'row', array("attr" => array("class" => "datepicker lastForm", "placeholder" => "Votre date de naissance"), "label" => "Votre date d'anniversaire"));
+        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["formBooking"]) || array_key_exists("formBooking", $context) ? $context["formBooking"] : (function () { throw new Twig_Error_Runtime('Variable "formBooking" does not exist.', 21, $this->source); })()), "rateId", array()), 'row', array("label" => "Quel type de billet voulez vous?"));
+        echo "
+            ";
+        // line 22
+        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["formBooking"]) || array_key_exists("formBooking", $context) ? $context["formBooking"] : (function () { throw new Twig_Error_Runtime('Variable "formBooking" does not exist.', 22, $this->source); })()), "birthDate", array()), 'row', array("attr" => array("class" => "datepicker lastForm", "placeholder" => "Votre date de naissance"), "label" => "Votre date d'anniversaire"));
         echo "
 
-          <button type=\"submit\" class=\"btn btn-danger\">Ajouter un billet </button>
+            <button type=\"submit\" class=\"btn btn-danger\">Ajouter un billet</button>
 
-        ";
-        // line 25
-        echo         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["formBooking"]) || array_key_exists("formBooking", $context) ? $context["formBooking"] : (function () { throw new Twig_Error_Runtime('Variable "formBooking" does not exist.', 25, $this->source); })()), 'form_end');
+          ";
+        // line 26
+        echo         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["formBooking"]) || array_key_exists("formBooking", $context) ? $context["formBooking"] : (function () { throw new Twig_Error_Runtime('Variable "formBooking" does not exist.', 26, $this->source); })()), 'form_end');
         echo "
-
-
+        </div>
     </section>
     <section class=\"container part2\">
-      <h2>Liste des billet choisi</h2>
+      <h2>Liste des billets choisis</h2>
 
+      ";
+        // line 32
+        if ( !(null === (isset($context["formBillet"]) || array_key_exists("formBillet", $context) ? $context["formBillet"] : (function () { throw new Twig_Error_Runtime('Variable "formBillet" does not exist.', 32, $this->source); })()))) {
+            // line 33
+            echo "        ";
+            $context['_parent'] = $context;
+            $context['_seq'] = twig_ensure_traversable((isset($context["formBillet"]) || array_key_exists("formBillet", $context) ? $context["formBillet"] : (function () { throw new Twig_Error_Runtime('Variable "formBillet" does not exist.', 33, $this->source); })()));
+            foreach ($context['_seq'] as $context["_key"] => $context["billet"]) {
+                // line 34
+                echo "
+      <div class=\"card billet-c\" >
+        <div class=\"card-header bg-primary billet-c-h\">
+          <p > <span>";
+                // line 37
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["billet"], "name", array()), "html", null, true);
+                echo "</span> <span>";
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["billet"], "firstName", array()), "html", null, true);
+                echo "</span> de ";
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["billet"], "nameCountry", array()), "html", null, true);
+                echo "</p>
+          <form  action=\"";
+                // line 38
+                echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("billetDelete");
+                echo "\" method=\"post\">
+            <input type=\"hidden\" name=\"idBillet\" value=\"billet.idResponse\">
+            <button type=\"submit\" class=\"btn btn-danger btnCross\">X</button>
 
+          </form>
+        </div>
+        <div class=\"card-body bg-secondary billet-c-b\">
 
+          <p class=\"card-text billet-c-t\">Visite la ";
+                // line 46
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["billet"], "nameType", array()), "html", null, true);
+                echo "  au tarif \"";
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["billet"], "nameRate", array()), "html", null, true);
+                echo "\" le ";
+                echo twig_escape_filter($this->env, twig_date_format_filter($this->env, twig_get_attribute($this->env, $this->source, $context["billet"], "visitDate", array()), "d/m/Y"), "html", null, true);
+                echo "</p>
+
+        </div>
+      </div>
+      ";
+            }
+            $_parent = $context['_parent'];
+            unset($context['_seq'], $context['_iterated'], $context['_key'], $context['billet'], $context['_parent'], $context['loop']);
+            $context = array_intersect_key($context, $_parent) + $_parent;
+            // line 51
+            echo "      <a class=\"btn btn-primary\" href=\"#\">Suivant ►</a>
+      ";
+        } else {
+            // line 53
+            echo "      <p class=\"p-blanc\">Venez decouvrir les oeuvre des maitre d'autre ages. Le musée du Louvre vous acceuil, prenez un billet!</p>
+      ";
+        }
+        // line 55
+        echo "
     </section>
 
   </main>
@@ -157,7 +212,7 @@ class __TwigTemplate_fae59332f93f9e3d331c63137d81fbd43759c0f0ca07e9a91192cb07248
 
     }
 
-    // line 38
+    // line 60
     public function block_javascripts($context, array $blocks = array())
     {
         $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e = $this->extensions["Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension"];
@@ -166,7 +221,7 @@ class __TwigTemplate_fae59332f93f9e3d331c63137d81fbd43759c0f0ca07e9a91192cb07248
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02 = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "javascripts"));
 
-        // line 39
+        // line 61
         echo "
 <script src=\"https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.5.1/flatpickr.min.js\"></script>
 <script src=\"https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.5.1/l10n/fr.js\"></script>
@@ -193,7 +248,7 @@ class __TwigTemplate_fae59332f93f9e3d331c63137d81fbd43759c0f0ca07e9a91192cb07248
 
     public function getDebugInfo()
     {
-        return array (  170 => 39,  161 => 38,  138 => 25,  131 => 21,  127 => 20,  123 => 19,  119 => 18,  115 => 17,  111 => 16,  107 => 15,  103 => 14,  98 => 11,  89 => 10,  71 => 8,  59 => 3,  50 => 2,  40 => 1,  38 => 6,  15 => 1,);
+        return array (  225 => 61,  216 => 60,  202 => 55,  198 => 53,  194 => 51,  179 => 46,  168 => 38,  160 => 37,  155 => 34,  150 => 33,  148 => 32,  139 => 26,  132 => 22,  128 => 21,  124 => 20,  120 => 19,  116 => 18,  112 => 17,  108 => 16,  104 => 15,  98 => 11,  89 => 10,  71 => 8,  59 => 3,  50 => 2,  40 => 1,  38 => 6,  15 => 1,);
     }
 
     public function getSourceContext()
@@ -209,27 +264,49 @@ class __TwigTemplate_fae59332f93f9e3d331c63137d81fbd43759c0f0ca07e9a91192cb07248
 
 {% block body %}
   <main class=\"billeterie index \">
-    <section class=\"container part1\">
-      <h1>Choisissez vos billet</h1>
-        {{ form_start(formBooking) }}
-          {{ form_row(formBooking.name, { 'attr':{'placeholder': \"Nom\"} , 'label': 'Votre nom' }) }}
-          {{ form_row(formBooking.firstName, { 'attr':{'placeholder': \"Prénom\"} ,  'label': 'Votre prénom' }) }}
-          {{ form_row(formBooking.country, { 'attr':{'placeholder': \"Pays\"} , 'label': 'Votre pays' }) }}
-          {{ form_row(formBooking.typeId, { 'label': 'Vous venez visiter pour:' }) }}
-          {{ form_row(formBooking.visitDate, {'attr':{'class': 'datepicker'} , 'label': 'le jour de votre visite' }) }}
-          {{ form_row(formBooking.rateId, { 'label': 'Quel type de billet voulez vous?' }) }}
-          {{ form_row(formBooking.birthDate, {'attr':{'class': 'datepicker lastForm','placeholder': \"Votre date de naissance\"} , 'label': 'Votre date d\\'anniversaire' }) }}
+    <section class=\"container \">
+      <div class=\"part1\">
+        <h1>Choisissez vos billets</h1>
+          {{ form_start(formBooking) }}
+            {{ form_row(formBooking.name, { 'attr':{'placeholder': \"Nom\"} , 'label': 'Votre nom' }) }}
+            {{ form_row(formBooking.firstName, { 'attr':{'placeholder': \"Prénom\"} ,  'label': 'Votre prénom' }) }}
+            {{ form_row(formBooking.country, { 'attr':{'placeholder': \"Pays\"} , 'label': 'Votre pays' }) }}
+            {{ form_row(formBooking.typeId, { 'label': 'Vous venez visiter pour:' }) }}
+            {{ form_row(formBooking.visitDate, {'attr':{'class': 'datepicker'} , 'label': 'le jour de votre visite' }) }}
+            {{ form_row(formBooking.rateId, { 'label': 'Quel type de billet voulez vous?' }) }}
+            {{ form_row(formBooking.birthDate, {'attr':{'class': 'datepicker lastForm','placeholder': \"Votre date de naissance\"} , 'label': 'Votre date d\\'anniversaire' }) }}
 
-          <button type=\"submit\" class=\"btn btn-danger\">Ajouter un billet </button>
+            <button type=\"submit\" class=\"btn btn-danger\">Ajouter un billet</button>
 
-        {{ form_end(formBooking) }}
-
-
+          {{ form_end(formBooking) }}
+        </div>
     </section>
     <section class=\"container part2\">
-      <h2>Liste des billet choisi</h2>
+      <h2>Liste des billets choisis</h2>
 
+      {% if formBillet is not null %}
+        {% for billet in formBillet %}
 
+      <div class=\"card billet-c\" >
+        <div class=\"card-header bg-primary billet-c-h\">
+          <p > <span>{{billet.name}}</span> <span>{{billet.firstName}}</span> de {{billet.nameCountry}}</p>
+          <form  action=\"{{ path('billetDelete') }}\" method=\"post\">
+            <input type=\"hidden\" name=\"idBillet\" value=\"billet.idResponse\">
+            <button type=\"submit\" class=\"btn btn-danger btnCross\">X</button>
+
+          </form>
+        </div>
+        <div class=\"card-body bg-secondary billet-c-b\">
+
+          <p class=\"card-text billet-c-t\">Visite la {{billet.nameType}}  au tarif \"{{billet.nameRate}}\" le {{billet.visitDate |date(\"d/m/Y\")}}</p>
+
+        </div>
+      </div>
+      {% endfor %}
+      <a class=\"btn btn-primary\" href=\"#\">Suivant ►</a>
+      {% else %}
+      <p class=\"p-blanc\">Venez decouvrir les oeuvre des maitre d'autre ages. Le musée du Louvre vous acceuil, prenez un billet!</p>
+      {% endif %}
 
     </section>
 

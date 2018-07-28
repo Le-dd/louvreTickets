@@ -22,7 +22,7 @@ class BookingType extends AbstractType
             ->add('name')
             ->add('firstName')
             ->add('country', CountryType::class,[
-              'placeholder' => 'Choisissez votre pays',
+              'data' => 'FR',
 
             ])
             ->add('birthDate',TextType::class)
