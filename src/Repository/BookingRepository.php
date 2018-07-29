@@ -47,4 +47,28 @@ class BookingRepository extends ServiceEntityRepository
         ;
     }
     */
+
+
+    /**
+     * @param $price
+     * @return Product[]
+     */
+    public function countAllDay($date): array
+    {
+
+        $params['firstDate'] ="$date 00:00:00";
+        $params['lastDate']="$date 23:60:60";
+        // automatically knows to select Products
+        // the "p" is an alias you'll use in the rest of the query
+        $qb = $this->createQueryBuilder('b')
+            ->select('COUNT(b.visit_date)')
+            ->where('visit_date BETWEEN :firstDate AND :lastDate')
+            ->setParameters($params)
+            ->getQuery();
+
+        return $qb->execute();
+
+        // to get just one result:
+        // $product = $qb->setMaxResults(1)->getOneOrNullResult();
+    }
 }

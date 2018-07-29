@@ -23,7 +23,6 @@ class BookingType extends AbstractType
             ->add('firstName')
             ->add('country', CountryType::class,[
               'data' => 'FR',
-
             ])
             ->add('birthDate',TextType::class)
             ->add('rateId', EntityType::class, [
