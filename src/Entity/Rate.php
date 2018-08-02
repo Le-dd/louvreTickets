@@ -31,6 +31,16 @@ class Rate
      */
     private $status;
 
+    /**
+     * @ORM\Column(type="string", length=50)
+     */
+    private $minAge;
+
+    /**
+     * @ORM\Column(type="string", length=50)
+     */
+    private $maxAge;
+
     public function getId()
     {
         return $this->id;
@@ -74,5 +84,29 @@ class Rate
 
     public function getLabelForm(){
       return "Le tarif \"{$this->name}\" {$this->status} à {$this->price}€";
+    }
+
+    public function getMinAge(): ?string
+    {
+        return $this->minAge;
+    }
+
+    public function setMinAge(string $minAge): self
+    {
+        $this->minAge = $minAge;
+
+        return $this;
+    }
+
+    public function getMaxAge(): ?string
+    {
+        return $this->maxAge;
+    }
+
+    public function setMaxAge(string $maxAge): self
+    {
+        $this->maxAge = $maxAge;
+
+        return $this;
     }
 }

@@ -407,9 +407,12 @@
       <tag name="doctrine.repository_service"/>
       <argument type="service" id="doctrine"/>
     </service>
-    <service id="App\Service\FormResultInSession" class="App\Service\FormResultInSession" public="false" autowire="true" autoconfigure="true">
+    <service id="App\Service\BookingValueService" class="App\Service\BookingValueService" public="false" autowire="true" autoconfigure="true">
       <argument type="service" id="session"/>
       <argument type="service" id="doctrine.orm.default_entity_manager"/>
+    </service>
+    <service id="App\Service\SessionService" class="App\Service\SessionService" public="false" autowire="true" autoconfigure="true">
+      <argument type="service" id="session"/>
     </service>
     <service id="App\Validator\Constraints\NumberVisit" class="App\Validator\Constraints\NumberVisit" public="false" autowire="true" autoconfigure="true"/>
     <service id="App\Validator\Constraints\NumberVisitValidator" class="App\Validator\Constraints\NumberVisitValidator" public="false" autowire="true" autoconfigure="true">
@@ -4309,20 +4312,20 @@
         <argument>make:migration</argument>
       </call>
     </service>
-    <service id=".service_locator.L3Iek2j" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+    <service id=".service_locator.TkBewAb" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
-        <argument key="SessionResult" type="service" id="App\Service\FormResultInSession"/>
-        <argument key="session" type="service" id="session"/>
+        <argument key="bookingResult" type="service" id="App\Service\BookingValueService"/>
+        <argument key="sessionService" type="service" id="App\Service\SessionService"/>
       </argument>
     </service>
-    <service id=".service_locator.c2.Y0zw" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+    <service id=".service_locator.5XtoG3." class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
-        <argument key="App\Controller\BilletterieController::billetDelete" type="service" id=".service_locator.L3Iek2j"/>
-        <argument key="App\Controller\BilletterieController::index" type="service" id=".service_locator.L3Iek2j"/>
-        <argument key="App\Controller\BilletterieController:billetDelete" type="service" id=".service_locator.L3Iek2j"/>
-        <argument key="App\Controller\BilletterieController:index" type="service" id=".service_locator.L3Iek2j"/>
+        <argument key="App\Controller\BilletterieController::billetDelete" type="service" id=".service_locator.TkBewAb"/>
+        <argument key="App\Controller\BilletterieController::index" type="service" id=".service_locator.TkBewAb"/>
+        <argument key="App\Controller\BilletterieController:billetDelete" type="service" id=".service_locator.TkBewAb"/>
+        <argument key="App\Controller\BilletterieController:index" type="service" id=".service_locator.TkBewAb"/>
       </argument>
     </service>
     <service id=".service_locator.yQVjGlt" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
@@ -4564,7 +4567,7 @@
       <argument type="service" id="security.token_storage"/>
     </service>
     <service id="debug.argument_resolver.service.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver" public="false">
-      <argument type="service" id=".service_locator.c2.Y0zw"/>
+      <argument type="service" id=".service_locator.5XtoG3."/>
     </service>
     <service id="debug.argument_resolver.default.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver" public="false"/>
     <service id="debug.argument_resolver.variadic.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\VariadicValueResolver" public="false"/>
@@ -4941,7 +4944,7 @@
     <service id="Psr\Log\LoggerInterface" alias="monolog.logger" public="false"/>
     <service id="sensio_framework_extra.converter.doctrine.orm.expression_language" alias="sensio_framework_extra.converter.doctrine.orm.expression_language.default" public="false"/>
     <service id="sensio_framework_extra.security.expression_language" alias="sensio_framework_extra.security.expression_language.default" public="false"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator.c2.Y0zw"/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator.5XtoG3."/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem" public="false"/>
     <service id="twig.loader" alias="twig.loader.native_filesystem"/>
     <service id=".service_locator.AoifO_3" alias=".2_ServiceLocator~0n.331A" public="false"/>

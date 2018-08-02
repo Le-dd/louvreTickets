@@ -9,6 +9,8 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\CountryType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 
 use App\Entity\Booking;
 use App\Entity\Rate;
@@ -25,11 +27,10 @@ class BookingType extends AbstractType
               'data' => 'FR',
             ])
             ->add('birthDate',TextType::class)
-            ->add('rateId', EntityType::class, [
-              'class' => Rate::class,
-              'choice_label' => function($rate){
-                return $rate->getLabelForm();
-              }
+            ->add('rateId', CheckboxType::class,[
+                'mapped'=>false,
+                'required' => false,
+                'value'=>'Réduit'
             ])
             ->add('typeId', EntityType::class, [
               'class' => Type::class,
@@ -40,6 +41,7 @@ class BookingType extends AbstractType
             ->add('visitDate',TextType::class,[
               'data' => date_format(new \DateTime(),'Y-m-d H:i:s')
             ])
+            
         ;
     }
 

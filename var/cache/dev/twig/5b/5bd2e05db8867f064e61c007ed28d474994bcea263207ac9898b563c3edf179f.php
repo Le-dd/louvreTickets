@@ -125,11 +125,11 @@ class __TwigTemplate_fae59332f93f9e3d331c63137d81fbd43759c0f0ca07e9a91192cb07248
         echo "
             ";
         // line 21
-        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["formBooking"]) || array_key_exists("formBooking", $context) ? $context["formBooking"] : (function () { throw new Twig_Error_Runtime('Variable "formBooking" does not exist.', 21, $this->source); })()), "rateId", array()), 'row', array("label" => "Quel type de billet voulez vous?"));
+        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["formBooking"]) || array_key_exists("formBooking", $context) ? $context["formBooking"] : (function () { throw new Twig_Error_Runtime('Variable "formBooking" does not exist.', 21, $this->source); })()), "birthDate", array()), 'row', array("attr" => array("class" => "datepicker lastForm", "placeholder" => "Votre date de naissance"), "label" => "Votre date d'anniversaire"));
         echo "
             ";
         // line 22
-        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["formBooking"]) || array_key_exists("formBooking", $context) ? $context["formBooking"] : (function () { throw new Twig_Error_Runtime('Variable "formBooking" does not exist.', 22, $this->source); })()), "birthDate", array()), 'row', array("attr" => array("class" => "datepicker lastForm", "placeholder" => "Votre date de naissance"), "label" => "Votre date d'anniversaire"));
+        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["formBooking"]) || array_key_exists("formBooking", $context) ? $context["formBooking"] : (function () { throw new Twig_Error_Runtime('Variable "formBooking" does not exist.', 22, $this->source); })()), "rateId", array()), 'row', array("label" => "faite vous partie d'un régime speciale (étudiant,militaire...)"));
         echo "
 
             <button type=\"submit\" class=\"btn btn-danger\">Ajouter un billet</button>
@@ -167,7 +167,10 @@ class __TwigTemplate_fae59332f93f9e3d331c63137d81fbd43759c0f0ca07e9a91192cb07248
                 // line 38
                 echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("billetDelete");
                 echo "\" method=\"post\">
-            <input type=\"hidden\" name=\"idBillet\" value=\"billet.idResponse\">
+            <input type=\"hidden\" name=\"idBillet\" value=\"";
+                // line 39
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["billet"], "idResponse", array()), "html", null, true);
+                echo "\">
             <button type=\"submit\" class=\"btn btn-danger btnCross\">X</button>
 
           </form>
@@ -248,7 +251,7 @@ class __TwigTemplate_fae59332f93f9e3d331c63137d81fbd43759c0f0ca07e9a91192cb07248
 
     public function getDebugInfo()
     {
-        return array (  225 => 61,  216 => 60,  202 => 55,  198 => 53,  194 => 51,  179 => 46,  168 => 38,  160 => 37,  155 => 34,  150 => 33,  148 => 32,  139 => 26,  132 => 22,  128 => 21,  124 => 20,  120 => 19,  116 => 18,  112 => 17,  108 => 16,  104 => 15,  98 => 11,  89 => 10,  71 => 8,  59 => 3,  50 => 2,  40 => 1,  38 => 6,  15 => 1,);
+        return array (  228 => 61,  219 => 60,  205 => 55,  201 => 53,  197 => 51,  182 => 46,  172 => 39,  168 => 38,  160 => 37,  155 => 34,  150 => 33,  148 => 32,  139 => 26,  132 => 22,  128 => 21,  124 => 20,  120 => 19,  116 => 18,  112 => 17,  108 => 16,  104 => 15,  98 => 11,  89 => 10,  71 => 8,  59 => 3,  50 => 2,  40 => 1,  38 => 6,  15 => 1,);
     }
 
     public function getSourceContext()
@@ -273,8 +276,8 @@ class __TwigTemplate_fae59332f93f9e3d331c63137d81fbd43759c0f0ca07e9a91192cb07248
             {{ form_row(formBooking.country, { 'attr':{'placeholder': \"Pays\"} , 'label': 'Votre pays' }) }}
             {{ form_row(formBooking.typeId, { 'label': 'Vous venez visiter pour:' }) }}
             {{ form_row(formBooking.visitDate, {'attr':{'class': 'datepicker'} , 'label': 'le jour de votre visite' }) }}
-            {{ form_row(formBooking.rateId, { 'label': 'Quel type de billet voulez vous?' }) }}
             {{ form_row(formBooking.birthDate, {'attr':{'class': 'datepicker lastForm','placeholder': \"Votre date de naissance\"} , 'label': 'Votre date d\\'anniversaire' }) }}
+            {{ form_row(formBooking.rateId, { 'label': 'faite vous partie d\\'un régime speciale (étudiant,militaire...)' }) }}
 
             <button type=\"submit\" class=\"btn btn-danger\">Ajouter un billet</button>
 
@@ -291,7 +294,7 @@ class __TwigTemplate_fae59332f93f9e3d331c63137d81fbd43759c0f0ca07e9a91192cb07248
         <div class=\"card-header bg-primary billet-c-h\">
           <p > <span>{{billet.name}}</span> <span>{{billet.firstName}}</span> de {{billet.nameCountry}}</p>
           <form  action=\"{{ path('billetDelete') }}\" method=\"post\">
-            <input type=\"hidden\" name=\"idBillet\" value=\"billet.idResponse\">
+            <input type=\"hidden\" name=\"idBillet\" value=\"{{billet.idResponse}}\">
             <button type=\"submit\" class=\"btn btn-danger btnCross\">X</button>
 
           </form>

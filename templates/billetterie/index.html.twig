@@ -18,8 +18,8 @@
             {{ form_row(formBooking.country, { 'attr':{'placeholder': "Pays"} , 'label': 'Votre pays' }) }}
             {{ form_row(formBooking.typeId, { 'label': 'Vous venez visiter pour:' }) }}
             {{ form_row(formBooking.visitDate, {'attr':{'class': 'datepicker'} , 'label': 'le jour de votre visite' }) }}
-            {{ form_row(formBooking.rateId, { 'label': 'Quel type de billet voulez vous?' }) }}
             {{ form_row(formBooking.birthDate, {'attr':{'class': 'datepicker lastForm','placeholder': "Votre date de naissance"} , 'label': 'Votre date d\'anniversaire' }) }}
+            {{ form_row(formBooking.rateId, { 'label': 'faite vous partie d\'un régime speciale (étudiant,militaire...)' }) }}
 
             <button type="submit" class="btn btn-danger">Ajouter un billet</button>
 
@@ -36,7 +36,7 @@
         <div class="card-header bg-primary billet-c-h">
           <p > <span>{{billet.name}}</span> <span>{{billet.firstName}}</span> de {{billet.nameCountry}}</p>
           <form  action="{{ path('billetDelete') }}" method="post">
-            <input type="hidden" name="idBillet" value="billet.idResponse">
+            <input type="hidden" name="idBillet" value="{{billet.idResponse}}">
             <button type="submit" class="btn btn-danger btnCross">X</button>
 
           </form>
