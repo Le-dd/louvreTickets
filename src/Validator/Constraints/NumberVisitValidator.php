@@ -4,24 +4,51 @@ namespace App\Validator\Constraints;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 use Symfony\Component\Validator\Exception\UnexpectedTypeException;
+use Symfony\Component\HttpFoundation\Request;
+
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use Doctrine\ORM\EntityManagerInterface;
 
 use App\Entity\Booking;
 use App\Entity\BookingRepository;
 
 class NumberVisitValidator extends ConstraintValidator
 {
+
+  /**
+   * @var SessionInterface
+   */
+  private $session;
+
+  /**
+   * @var EntityManager
+   */
+  private $entityManager;
+
+
+
+  public function __construct(SessionInterface $session,EntityManagerInterface $entityManager)
+    {
+      $this->session =$session;
+      $this->entityManager =$entityManager;
+
+    }
+
     public function validate($value, Constraint $constraint)
     {
-      $session = SessionInterface::class;
-      if (!$session->has('resultForm')) {
-      $sessionCount  = count(json_decode($session->get('resultForm'),true));
-      }
-      $repoDate= $this->getDoctrine()->getRepository(Booking::class);
-      $countDate= $repoRate->findById($idRate);
+      $request= new Request;
+      $uuidSession = $request->cookies->get('Uuid');
+      if (!empty($this->session->has("resultForm_{$uuidSession}"))) {
+      $sessionCount  = count(json_decode($this->session->get("resultForm_{$uuidSession}"),true));
+    }else{
+      $sessionCount  = 0;
+    }
+      $repoBooking= $this->entityManager->getRepository(Booking::class);
+      $countDate= $repoBooking->countAllDay($value->format('Y-m-d'));
+      $valueCount = intval($countDate[0][1]) + $sessionCount+1;
 
 
-        if (!preg_match('/^[a-zA-Z0-9]+$/', $value, $matches)) {
+        if ($valueCount >= 1000) {
             $this->context->buildViolation($constraint->message)
                 ->setParameter('{{ string }}', $value)
                 ->addViolation();

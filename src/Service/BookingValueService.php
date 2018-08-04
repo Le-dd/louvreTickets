@@ -74,8 +74,10 @@ class BookingValueService
      */
     public function dateTimeInBooking(array $billet)
     {
+
       $billet['visitDate']=new \DateTime($billet['visitDate']);
       $billet['birthDate']=new \DateTime($billet['birthDate']);
+
       return $billet;
     }
 

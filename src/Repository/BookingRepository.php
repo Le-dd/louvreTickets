@@ -61,8 +61,8 @@ class BookingRepository extends ServiceEntityRepository
         // automatically knows to select Products
         // the "p" is an alias you'll use in the rest of the query
         $qb = $this->createQueryBuilder('b')
-            ->select('COUNT(b.visit_date)')
-            ->where('visit_date BETWEEN :firstDate AND :lastDate')
+            ->select('COUNT(b.visitDate)')
+            ->where('b.visitDate BETWEEN :firstDate AND :lastDate')
             ->setParameters($params)
             ->getQuery();
 

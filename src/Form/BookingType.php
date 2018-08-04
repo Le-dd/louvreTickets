@@ -24,9 +24,11 @@ class BookingType extends AbstractType
             ->add('name')
             ->add('firstName')
             ->add('country', CountryType::class,[
-              'data' => 'FR',
+              'data' => 'FR'
             ])
-            ->add('birthDate',TextType::class)
+            ->add('birthDate',TextType::class,[
+              'data'=> date_format(new \DateTime(),'Y-m-d H:i:s')
+            ])
             ->add('rateId', CheckboxType::class,[
                 'mapped'=>false,
                 'required' => false,
@@ -41,7 +43,7 @@ class BookingType extends AbstractType
             ->add('visitDate',TextType::class,[
               'data' => date_format(new \DateTime(),'Y-m-d H:i:s')
             ])
-            
+
         ;
     }
 

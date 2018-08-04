@@ -2,9 +2,13 @@
 
 namespace App\Entity;
 
-use Symfony\Component\Validator\Constraints as Assert;
 
 use Doctrine\ORM\Mapping as ORM;
+
+use Symfony\Component\Validator\Constraints as Assert;
+use App\Validator\Constraints as AcmeAssert;
+
+
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\BookingRepository")
@@ -79,6 +83,7 @@ class Booking
      * @ORM\Column(type="datetime")
      * @Assert\NotBlank()
      * @Assert\DateTime()
+     * @AcmeAssert\NumberVisit()
      */
     private $visitDate;
 

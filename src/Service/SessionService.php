@@ -48,8 +48,6 @@ class SessionService
           $response->headers->clearCookie('Uuid');
           $request->cookies->remove('Uuid');
 
-
-
       }
     }
 
