@@ -7,7 +7,7 @@ use Symfony\Component\Validator\Constraint;
 /**
  * @Annotation
  */
-class NumberVisit extends Constraint
+class MonthBirthDate extends Constraint
 {
-    public $message = 'too much ticket on {{ date }} it was sold';
+    public $message = 'your birth date {{ date }} is not valid';
 }

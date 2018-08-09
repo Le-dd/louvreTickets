@@ -6,7 +6,7 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 use Symfony\Component\Validator\Constraints as Assert;
-use App\Validator\Constraints as AcmeAssert;
+use App\Validator\Constraints as BookingAssert;
 
 
 
@@ -48,14 +48,15 @@ class Booking
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank()
+     * @Assert\NotBlank
      */
     private $country;
 
     /**
      * @ORM\Column(type="datetime")
-     * @Assert\NotBlank()
-     * @Assert\DateTime()
+     * @Assert\NotBlank
+     * @Assert\DateTime
+     * @BookingAssert\MonthBirthDate
      */
     private $birthDate;
 
@@ -75,15 +76,16 @@ class Booking
     /**
      * @ORM\OneToOne(targetEntity="App\Entity\Type", cascade={"persist", "remove"})
      * @ORM\JoinColumn(nullable=false, name="type_id")
-     * @Assert\NotBlank()
+     * @Assert\NotBlank
      */
     private $typeId;
 
     /**
      * @ORM\Column(type="datetime")
-     * @Assert\NotBlank()
-     * @Assert\DateTime()
-     * @AcmeAssert\NumberVisit()
+     * @Assert\NotBlank
+     * @Assert\DateTime
+     * @BookingAssert\ValideDate
+     * @BookingAssert\NumberVisit
      */
     private $visitDate;
 
@@ -100,6 +102,7 @@ class Booking
     public function setName(string $name): self
     {
         $this->name = $name;
+
 
         return $this;
     }
@@ -135,6 +138,7 @@ class Booking
 
     public function setBirthDate(\DateTimeInterface $birthDate): self
     {
+        
         $this->birthDate = $birthDate;
 
         return $this;

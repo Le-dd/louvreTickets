@@ -47,8 +47,6 @@ class BilletterieController extends Controller
 
         if ($request->isMethod('POST'))
         {
-
-
           $formResponse= $bookingResult->dateTimeInBooking($valueRequest);
           $form->submit($formResponse);
 
@@ -65,6 +63,8 @@ class BilletterieController extends Controller
           $formBillet = $bookingResult->addValueToBooking($nameSession);
         }
 
+
+        
         return $this->render('billetterie/index.html.twig', [
             'formBooking' => $form->createView(),
             'formBillet' => $formBillet,

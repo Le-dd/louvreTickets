@@ -4,13 +4,15 @@ namespace App\Form;
 
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\CallbackTransformer;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\CountryType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 use App\Entity\Booking;
 use App\Entity\Rate;
@@ -27,7 +29,7 @@ class BookingType extends AbstractType
               'data' => 'FR'
             ])
             ->add('birthDate',TextType::class,[
-              'data'=> date_format(new \DateTime(),'Y-m-d H:i:s')
+              'data'=>date_format(new \DateTime(),"Y-m-d H:i:s")
             ])
             ->add('rateId', CheckboxType::class,[
                 'mapped'=>false,
@@ -41,10 +43,13 @@ class BookingType extends AbstractType
               }
             ])
             ->add('visitDate',TextType::class,[
-              'data' => date_format(new \DateTime(),'Y-m-d H:i:s')
+
+              'data' =>date_format(new \DateTime(),"Y-m-d H:i:s")
             ])
 
         ;
+
+
     }
 
     public function configureOptions(OptionsResolver $resolver)
@@ -53,4 +58,7 @@ class BookingType extends AbstractType
             'data_class' => Booking::class,
         ]);
     }
+
+
+
 }

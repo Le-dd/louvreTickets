@@ -36,6 +36,10 @@ class NumberVisitValidator extends ConstraintValidator
 
     public function validate($value, Constraint $constraint)
     {
+
+      if (null === $value || '' === $value) {
+          return;
+      }
       $request= new Request;
       $uuidSession = $request->cookies->get('Uuid');
       if (!empty($this->session->has("resultForm_{$uuidSession}"))) {
@@ -50,7 +54,7 @@ class NumberVisitValidator extends ConstraintValidator
 
         if ($valueCount >= 1000) {
             $this->context->buildViolation($constraint->message)
-                ->setParameter('{{ string }}', $value)
+                ->setParameter('{{ date }}',date_format($value,"d/m/Y"))
                 ->addViolation();
         }
     }

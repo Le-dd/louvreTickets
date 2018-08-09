@@ -5,6 +5,8 @@
 {% endblock %}
 {% form_theme formBooking 'bootstrap_4_layout.html.twig' %}
 
+
+
 {% block title %} Billeterie : Acceuil {% endblock %}
 
 {% block body %}
@@ -17,8 +19,8 @@
             {{ form_row(formBooking.firstName, { 'attr':{'placeholder': "Prénom"} ,  'label': 'Votre prénom' }) }}
             {{ form_row(formBooking.country, { 'attr':{'placeholder': "Pays"} , 'label': 'Votre pays' }) }}
             {{ form_row(formBooking.typeId, { 'label': 'Vous venez visiter pour:' }) }}
-            {{ form_row(formBooking.visitDate, {'attr':{'class': 'datepicker'} , 'label': 'le jour de votre visite' }) }}
-            {{ form_row(formBooking.birthDate, {'attr':{'class': 'datepicker lastForm','placeholder': "Votre date de naissance"} , 'label': 'Votre date d\'anniversaire' }) }}
+            {{ form_row(formBooking.visitDate , {'value':(formBooking.vars.value.visitDate | date('Y-m-d H:i:s') ),'attr':{'class': 'datepicker' } , 'label': 'le jour de votre visite' }) }}
+            {{ form_row(formBooking.birthDate , {'value':(formBooking.vars.value.birthDate | date('Y-m-d H:i:s') ),'attr':{'class': 'datepicker lastForm' } , 'label': 'Votre date d\'anniversaire' }) }}
             {{ form_row(formBooking.rateId, { 'label': 'faite vous partie d\'un régime speciale (étudiant,militaire...)' }) }}
 
             <button type="submit" class="btn btn-danger">Ajouter un billet</button>
@@ -43,7 +45,7 @@
         </div>
         <div class="card-body bg-secondary billet-c-b">
 
-          <p class="card-text billet-c-t">Visite la {{billet.nameType}}  au tarif "{{billet.nameRate}}" le {{billet.visitDate |date("d/m/Y")}}</p>
+          <p class="card-text billet-c-t">Visite la {{billet.nameType}}  au tarif "{{billet.nameRate}}" le {{billet.visitDate | date("d/m/Y")}}</p>
 
         </div>
       </div>
