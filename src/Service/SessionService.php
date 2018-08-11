@@ -24,11 +24,25 @@ class SessionService
 
     }
 
-
+/**
+ * créate new session value
+ * @param  Uuid $uuid
+ */
   public function newSession($uuid){
     if(empty($this->session->get($this->getIdSession($uuid)))){
       $this->session->set($this->getIdSession($uuid), json_encode([]));
+      $this->session->set($this->getIdSessionValide($uuid), '0');
+    }
+  }
 
+  /**
+   * set session new value in SessionValide
+   * @param  Uuid $uuid
+   * @param int $value
+   */
+  public function setSessionValide($uuid ,$value){
+    if(!empty($this->session->get($this->getIdSessionValide($uuid)))){
+      $this->session->set($this->getIdSessionValide($uuid), "$value");
     }
   }
 
@@ -53,7 +67,6 @@ class SessionService
 
     if(empty($request->cookies->get('Uuid'))){
       $uuid = uniqid();
-
       $response->headers->setCookie(new Cookie('Uuid', $uuid,time() + (1*24*60*60)));
       $response->send();
       return $uuid;
@@ -81,6 +94,18 @@ class SessionService
   public function getIdSession($uuid) :string
   {
     $prefix = "resultForm_";
+
+    return "{$prefix}{$uuid}";
+  }
+
+  /**
+   * Get Id Session valide with Uuid
+   * @param  $uuid
+   * @return string
+   */
+  public function getIdSessionValide($uuid) :string
+  {
+    $prefix = "valide_";
 
     return "{$prefix}{$uuid}";
   }

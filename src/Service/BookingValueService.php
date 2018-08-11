@@ -42,21 +42,23 @@ class BookingValueService
     public function addValueToBooking(string $sessionName){
 
       $response =json_decode($this->session->get($sessionName),true);
-
+      $repoRate= $this->entityManager->getRepository(Rate::class);
+      $repoType= $this->entityManager->getRepository(Type::class);
       for($i = 0; $i < count($response); ++$i){
+        $rate= $repoRate->find($response[$i]['rateId']);
+        $type=$repoType->find($response[$i]['typeId']);
 
         $response[$i]=$this->dateTimeInBooking($response[$i]);
         $response[$i]['idResponse'] = $i;
-        $repoRate= $this->entityManager->getRepository(Rate::class);
-        $idRate=intval($response[$i]['rateId']);
-        $rate= $repoRate->findById($idRate);
-        $rateName= $rate[0]->getName();
-        $ratePrice= $rate[0]->getPrice();
-        $response[$i]['nameRate']= $rateName;
-        $response[$i]['priceRate']= $ratePrice;
-        $repoType= $this->entityManager->getRepository(Type::class);
-        $type=$repoType->find($response[$i]['typeId']);
-        $response[$i]['nameType'] = $type->getName();
+        $response[$i]['nameRate']= $rate->getName();
+        $response[$i]['nameType']= $type->getName();
+        if($type->getName() === "Journée"){
+          $response[$i]['priceRate']= $rate->getPrice();
+        }else{
+        $value = $rate->getPrice()/2;
+        $response[$i]['priceRate'] = floatval(number_format ( $value , 2 ));
+        }
+
         $response[$i]['nameCountry']= Intl::getRegionBundle()->getCountryName($response[$i]['country']);
 
 
@@ -118,6 +120,20 @@ class BookingValueService
       }
     }
 
+
+    /**
+     * Addition priceRate for values session
+     * @param  array  $Value
+     * @return int $response
+     */
+    public function additionPrice(array $Value)
+    {
+      $response = 0;
+      for($i = 0; $i < count($Value); ++$i){
+      $response += $Value[$i]['priceRate'];
+      }
+      return $response;
+    }
 
 
 

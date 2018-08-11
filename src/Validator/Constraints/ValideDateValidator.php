@@ -18,21 +18,22 @@ class ValideDateValidator extends ConstraintValidator
         $year = date_format($value,"Y");
         $dateValue = date_format($value,"Y-m-d");
         $arrayData = ["{$year}-05-01","{$year}-11-01","{$year}-12-25"];
-        $day = date("N" ,strtotime( $dateValue));
+        $Tuesday = date("N" ,strtotime( $dateValue));
+        $now = date_format(new \DateTime(),"Y-m-d");
 
-        $valideDay = true;
-        $valideDate = true;
-        if( $day == 2){
-          $valideDay = false;
+
+        if ($Tuesday == 2) {
+            $this->context->buildViolation($constraint->messageTuesday)
+                ->setParameter('{{ date }}', date_format($value,"d/m/Y"))
+                ->addViolation();
         }
-        if( in_array($dateValue, $arrayData)){
-          $valideDate = false;
+        if (in_array($dateValue, $arrayData)) {
+            $this->context->buildViolation($constraint->messageHoliday)
+                ->setParameter('{{ date }}', date_format($value,"d/m/Y"))
+                ->addViolation();
         }
-
-
-
-        if ($valideDay && $valideDate) {
-            $this->context->buildViolation($constraint->message)
+        if (new \DateTime($dateValue) < new \DateTime($now)) {
+            $this->context->buildViolation($constraint->messagePastDay)
                 ->setParameter('{{ date }}', date_format($value,"d/m/Y"))
                 ->addViolation();
         }

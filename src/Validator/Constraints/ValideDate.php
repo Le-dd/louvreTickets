@@ -10,5 +10,7 @@ use Symfony\Component\Validator\Constraint;
 class ValideDate extends Constraint
 {
 
-    public $message = 'The Louvre isn\'t open on {{ date }}';
+    public $messageTuesday = 'The Louvre isn\'t open on Tuesday ';
+    public $messageHoliday = 'The Louvre isn\'t open on {{ date }}';
+    public $messagePastDay = ' {{ date }} this day is past';
 }

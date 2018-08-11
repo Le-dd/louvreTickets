@@ -1,0 +1,70 @@
+{% extends 'base.html.twig' %}
+
+
+{% block title %} Billeterie : Devis {% endblock %}
+
+{% block body %}
+  <main class="quote index ">
+
+    <section class="container ">
+      <div class="part1">
+        {% if formBillet is not null %}
+        <div class="quote-title">
+          <h1>Liste des billets choisis</h1>
+        </div>
+
+
+
+          {% for billet in formBillet %}
+            <div class="quote-booking ">
+              <div class="quote-booking-info">
+                <ul class="identity-visit">
+                  <li><span class="quote-booking-badge">Nom : </span> <span class="quote-booking-uppercase">{{billet.name}}</span> <span class="quote-booking-uppercase">{{billet.firstName}}</span> </li>
+                  <li><span class="quote-booking-badge">Pays : </span> <span class="quote-booking-uppercase">{{billet.nameCountry}}</span> </li>
+                  <li><span class="quote-booking-badge">Date de naissance : </span> {{billet.birthDate | date("d/m/Y")}} </li>
+                </ul>
+
+                <ul class="Booking-visit">
+                  <li><span class="quote-booking-badge">Durée de la visite : </span> la " {{billet.nameType}} " </li>
+                  <li><span class="quote-booking-badge">Date du billet : </span> {{billet.visitDate | date("d/m/Y")}} </li>
+                  <li><span class="quote-booking-badge">Type du billet : </span> {{billet.nameRate }} </li>
+                </ul>
+
+              </div>
+
+              <div class="contneur-quote ">
+                <div class="quote-booking-prix ">
+                  <p > {{billet.priceRate}} €</p>
+                  <form  action="{{ path('quoteDelete') }}" method="post">
+                    <input type="hidden" name="idBillet" value="{{billet.idResponse}}">
+                    <button type="submit" class="btn btn-danger btnCross">X</button>
+                  </form>
+                </div>
+              </div>
+
+            </div>
+        {% endfor %}
+        <div class="contneur-total ">
+          <div class="total-booking-prix ">
+            <p class="quote-booking-badge" > Total : </p>
+            <p > {{totalPrice}} €</p>
+          </div>
+        </div>
+      </div>
+      <div class="part2">
+        <a class="btn btn-primary" href="{{ path('billetterie')}}">◀ Choisir un billet</a>
+        <a class="btn btn-primary" href="{{ path('quote')}}">Payer ▶</a>
+      </div>
+
+      {% else %}
+      <div class="part2">
+      <h1>Liste des billets choisis</h1>
+      <p class="p-blanc">Venez decouvrir les oeuvre des maitre d'autre ages. Le musée du Louvre vous acceuil, prenez un billet!</p>
+      </div>
+      {% endif %}
+
+
+    </section>
+
+  </main>
+{% endblock %}

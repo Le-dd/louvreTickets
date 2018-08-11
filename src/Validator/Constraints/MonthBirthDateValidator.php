@@ -16,9 +16,9 @@ class MonthBirthDateValidator extends ConstraintValidator
           return;
       }
 
-      dump($value);
+      
         $nowNineMonth = new \DateTime("now - 9 months");
-      dump($nowNineMonth);
+
 
         if ($value >= $nowNineMonth) {
             $this->context->buildViolation($constraint->message)
