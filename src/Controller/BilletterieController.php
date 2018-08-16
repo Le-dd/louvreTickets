@@ -25,8 +25,6 @@ class BilletterieController extends Controller
       SessionService $sessionService
       )
     {
-
-
       $booking = new Booking();
       $form = $this->createForm(BookingType::class,$booking);
       $newUuid = $sessionService->setUuidCookie($request);

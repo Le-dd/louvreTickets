@@ -4,6 +4,8 @@ namespace App\Service;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use App\Validator\Constraints as BookingAssert;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 use Symfony\Component\Intl\Intl;
 
@@ -11,6 +13,7 @@ use Doctrine\ORM\EntityManagerInterface;
 
 use App\Entity\Rate;
 use App\Entity\Type;
+use App\Entity\Booking;
 use App\Repository\RateRepository;
 use App\Repository\TypeRepository;
 
@@ -66,6 +69,56 @@ class BookingValueService
 
       return $response;
 
+    }
+
+    /**
+     * valid if number to booking < 1000
+     * @param  mixed
+     * @return mixed
+     */
+    public function secondValidNumbers(string $sessionName,ValidatorInterface $validator){
+
+      $response =json_decode($this->session->get($sessionName),true);
+
+
+      for($i = 0; $i < count($response); ++$i){
+
+        $response[$i]=$this->dateTimeInBooking($response[$i]);
+        $booking = $this->addToEntityBooking($response[$i]);
+        $numberVisitConstraint = new BookingAssert\NumberVisit();
+
+        $errors = $validator->validate(
+              $booking->getVisitDate(),
+              $numberVisitConstraint
+        );
+        if (0 !== count($errors)) {
+          return $this->redirectToRoute('billetterie', [], 301);
+          }
+      }
+
+
+
+    }
+
+    /**
+     * add value in entity booking
+     * @param  array $sessionName
+     * @return booking
+     */
+    public function addToEntityBooking(array $booking){
+      $repoRate= $this->entityManager->getRepository(Rate::class);
+      $repoType= $this->entityManager->getRepository(Type::class);
+      $rate= $repoRate->find($booking['rateId']);
+      $type= $repoType->find($booking['typeId']);
+        $response = (new Booking())
+          ->setName($booking['name'])
+          ->setFirstName($booking['firstName'])
+          ->setCountry($booking['country'])
+          ->setBirthDate($booking['birthDate'])
+          ->setRateId($rate)
+          ->setTypeId($type)
+          ->setVisitDate($booking['visitDate']);
+          return $response;
     }
 
 

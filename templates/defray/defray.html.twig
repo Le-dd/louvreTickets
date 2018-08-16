@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.5.1/flatpickr.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.5.1/themes/dark.css">
+{% endblock %}
+{% form_theme formStripe 'bootstrap_4_layout.html.twig' %}
+
+
+
+{% block title %} Billeterie : Acceuil {% endblock %}
+
+{% block body %}
+  <main class="defray index ">
+    <section class="container ">
+      <div class="part1">
+        <h1>Choisissez vos billets</h1>
+          {{ form_start(formStripe, {'attr':{'id': 'payment-form'}}) }}
+            {{ form_row(formStripe.name, { 'attr':{'placeholder': "Nom"} , 'label': 'Votre nom' }) }}
+            {{ form_row(formStripe.firstName, { 'attr':{'placeholder': "Prénom"} ,  'label': 'Votre prénom' }) }}
+            {{ form_row(formStripe.email, { 'attr':{'placeholder': "Email"} , 'label': 'Un email valide' }) }}
+            {{ form_row(formStripe.token, { 'attr':{'class': 'my-token-stripe'}  }) }}
+            <div class="form-row">
+              <label for="card-element"> Credit or debit card </label>
+               <div id="card-element"></div>
+               <div id="card-errors" role="alert"></div>
+            </div>
+            <button type="submit" class="btn btn-danger">Payer</button>
+
+          {{ form_end(formStripe) }}
+        </div>
+    </section>
+
+
+  </main>
+{% endblock %}
+{% block javascripts %}
+<script src="/js/MyJsStripe.js"></script>
+
+{% endblock %}
