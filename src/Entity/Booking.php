@@ -68,13 +68,13 @@ class Booking
     private $code;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Rate", cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity="App\Entity\Rate", cascade={"persist", "remove"})
      * @ORM\JoinColumn(nullable=false, name="rate_id")
      */
     private $rateId;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Type", cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity="App\Entity\Type", cascade={"persist", "remove"})
      * @ORM\JoinColumn(nullable=false, name="type_id")
      * @Assert\NotBlank
      */
@@ -88,6 +88,11 @@ class Booking
      * @BookingAssert\NumberVisit
      */
     private $visitDate;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $tokenCb;
 
     public function getId()
     {
@@ -138,7 +143,7 @@ class Booking
 
     public function setBirthDate(\DateTimeInterface $birthDate): self
     {
-        
+
         $this->birthDate = $birthDate;
 
         return $this;
@@ -188,6 +193,18 @@ class Booking
     public function setVisitDate(\DateTimeInterface $visitDate): self
     {
         $this->visitDate = $visitDate;
+
+        return $this;
+    }
+
+    public function getTokenCb(): ?string
+    {
+        return $this->tokenCb;
+    }
+
+    public function setTokenCb(string $tokenCb): self
+    {
+        $this->tokenCb = $tokenCb;
 
         return $this;
     }

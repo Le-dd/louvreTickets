@@ -3,13 +3,14 @@
 namespace App\Service;
 
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Session\SessionInterface;
-use App\Validator\Constraints as BookingAssert;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 use Symfony\Component\Intl\Intl;
 
 use Doctrine\ORM\EntityManagerInterface;
+
+use App\Service\StripeService;
+use App\Service\SessionService;
 
 use App\Entity\Rate;
 use App\Entity\Type;
@@ -17,11 +18,14 @@ use App\Entity\Booking;
 use App\Repository\RateRepository;
 use App\Repository\TypeRepository;
 
+use App\Validator\Constraints as BookingAssert;
+
+
 
 class BookingValueService
 {
   /**
-   * @var SessionInterface
+   * @var SessionService
    */
   private $session;
 
@@ -30,9 +34,9 @@ class BookingValueService
    */
   private $entityManager;
 
-  public function __construct(SessionInterface $session,EntityManagerInterface $entityManager)
+  public function __construct(SessionService $sessionService,EntityManagerInterface $entityManager)
     {
-      $this->session =$session;
+      $this->sessionService =$sessionService;
       $this->entityManager =$entityManager;
     }
 
@@ -44,7 +48,7 @@ class BookingValueService
      */
     public function addValueToBooking(string $sessionName){
 
-      $response =json_decode($this->session->get($sessionName),true);
+      $response =$this->sessionService->getSession($sessionName);
       $repoRate= $this->entityManager->getRepository(Rate::class);
       $repoType= $this->entityManager->getRepository(Type::class);
       for($i = 0; $i < count($response); ++$i){
@@ -55,13 +59,7 @@ class BookingValueService
         $response[$i]['idResponse'] = $i;
         $response[$i]['nameRate']= $rate->getName();
         $response[$i]['nameType']= $type->getName();
-        if($type->getName() === "Journée"){
-          $response[$i]['priceRate']= $rate->getPrice();
-        }else{
-        $value = $rate->getPrice()/2;
-        $response[$i]['priceRate'] = floatval(number_format ( $value , 2 ));
-        }
-
+        $response[$i]['priceRate']= $this->choicePrice($type->getName(),$rate->getPrice());
         $response[$i]['nameCountry']= Intl::getRegionBundle()->getCountryName($response[$i]['country']);
 
 
@@ -78,8 +76,7 @@ class BookingValueService
      */
     public function secondValidNumbers(string $sessionName,ValidatorInterface $validator){
 
-      $response =json_decode($this->session->get($sessionName),true);
-
+      $response = $this->sessionService->getSession($sessionName);
 
       for($i = 0; $i < count($response); ++$i){
 
@@ -101,11 +98,47 @@ class BookingValueService
     }
 
     /**
+     * valid if number to booking < 1000
+     * @param  mixed
+     * @return mixed
+     */
+    public function payAndAddToBooking(string $sessionName,array $result){
+
+      $response =$this->sessionService->getSession($sessionName);
+      $stripe = new StripeService;
+      $customer = $stripe->createCustomer($result['token'],$result['email']);
+      $sessionArray = [];
+
+      for($i = 0; $i < count($response); ++$i){
+
+        $response[$i]=$this->dateTimeInBooking($response[$i]);
+        $booking = $this->addToEntityBooking($response[$i]);
+
+        $name = $booking->getName();
+        $firstName = $booking->getFirstName();
+        $numberCode = uniqid();
+        $code = "{$name[0]}{$name[1]}-{$firstName[0]}{$firstName[1]}-{$numberCode}";
+        $booking->setCode($code);
+        $booking->setTokenCb($result['token']);
+        $this->entityManager->persist($booking);
+        $type = $booking->getTypeId();
+        $rate = $booking->getRateId();
+        $amount = $this->choicePrice($type->getName(),$rate->getPrice());
+        $stripe->simplePay($customer, $result, $amount);
+        $sessionArray[] =$booking;
+
+      }
+      $this->entityManager->flush();
+      $this->sessionService->setSession($sessionName,$sessionArray);
+
+    }
+
+    /**
      * add value in entity booking
      * @param  array $sessionName
      * @return booking
      */
-    public function addToEntityBooking(array $booking){
+    private function addToEntityBooking(array $booking){
       $repoRate= $this->entityManager->getRepository(Rate::class);
       $repoType= $this->entityManager->getRepository(Type::class);
       $rate= $repoRate->find($booking['rateId']);
@@ -188,6 +221,21 @@ class BookingValueService
       return $response;
     }
 
+    /**
+     * transform price
+     * @param  string $typeName
+     * @param   $ratePrice
+     * @return $result
+     */
+    private function choicePrice(string $typeName,$ratePrice){
+      if($typeName === "Journée"){
+        $result = $ratePrice;
+      }else{
+      $value = $ratePrice/2;
+      $result = floatval(number_format ( $value , 2 ));
+      }
+      return $result;
+    }
 
 
 }

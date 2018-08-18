@@ -10,11 +10,11 @@ class StripeService
 
   public function createCustomer(string $token,string $email){
 
-  \Stripe\Stripe::setApiKey("pk_test_yIPUyjFH83amYU9zj43S2oma");
+  \Stripe\Stripe::setApiKey("sk_test_lnxY8Rwd6mXknpAmQfZ0vD3K");
 
   $customer = \Stripe\Customer::create([
-      'source' => 'tok_mastercard',
-      'email' => 'paying.user@example.com',
+      'source' => $token,
+      'email' => $email,
   ]);
 
   return $customer;
@@ -22,16 +22,15 @@ class StripeService
   }
 
 
-  public function simplePay($customer, int $amount,string $name,string $firstName ){
+  public function simplePay($customer, array $result, $amount){
 
-    \Stripe\Stripe::setApiKey("pk_test_yIPUyjFH83amYU9zj43S2oma");
+    \Stripe\Stripe::setApiKey("sk_test_lnxY8Rwd6mXknpAmQfZ0vD3K");
 
-    $amountCent = $amount*100;
 
     $charge = \Stripe\Charge::create([
-        'amount' => $amountCent,
+        'amount' => $amount*100,
         'currency' => 'eur',
-        'description' => "billet de $name $firstName d'un montant de $amount €",
+        'description' => "billet de {$result['name']} {$result['firstName']} d'un montant de $amount €",
         'customer' => $customer->id,
     ]);
 

@@ -30,13 +30,14 @@ class DefrayController extends Controller
        if (!$request->isMethod('POST'))
        {
          $bookingResult->secondValidNumbers($nameSession,$this->get('validator'));
+         $sessionService->removeSession($sessionService->getIdSessionValide($uuidSession));
        }
        $form = $this->createForm(StripeType::class);
        $form->handleRequest($request);
 
     if ($form->isSubmitted() && $form->isValid()) {
           $valueRequest = $request->request->get($form->getName());
-          
+          $bookingResult->payAndAddToBooking($nameSession,$valueRequest);
 
         }
          return $this->render('defray/defray.html.twig', [

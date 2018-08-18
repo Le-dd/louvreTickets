@@ -35,6 +35,20 @@ class SessionService
     }
   }
 
+  public function setSession($sessionName,$resultInSession){
+    $this->session->set($sessionName, json_encode($resultInSession));
+  }
+
+  public function getSession($sessionName){
+    return json_decode($this->session->get($sessionName),true);
+  }
+
+  public function removeSession($sessionName){
+    $this->session->remove($sessionName);
+  }
+
+
+
   /**
    * set session new value in SessionValide
    * @param  Uuid $uuid
