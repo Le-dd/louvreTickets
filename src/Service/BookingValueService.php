@@ -69,6 +69,8 @@ class BookingValueService
 
     }
 
+
+
     /**
      * valid if number to booking < 1000
      * @param  mixed
@@ -125,7 +127,21 @@ class BookingValueService
         $rate = $booking->getRateId();
         $amount = $this->choicePrice($type->getName(),$rate->getPrice());
         $stripe->simplePay($customer, $result, $amount);
-        $sessionArray[] =$booking;
+        $valueBooking = [
+          'name' => $booking->getName(),
+          'firstName' => $booking->getFirstName(),
+          'country' => $booking->getCountry(),
+          'birthDate'=> date_format($booking->getBirthDate(),"Y-m-d H:i:s"),
+          'rateId' => $rate->getId(),
+          'typeId' => $type->getId(),
+          'visitDate' => date_format($booking->getVisitDate(),"Y-m-d H:i:s"),
+          'tokenCb' => $booking->getTokenCb(),
+          'code' => $booking->getCode(),
+          'email'=> $result['email']
+        ];
+
+        $sessionArray[] =$valueBooking;
+
 
       }
       $this->entityManager->flush();
@@ -167,6 +183,20 @@ class BookingValueService
       $billet['birthDate']=new \DateTime($billet['birthDate']);
 
       return $billet;
+    }
+
+    /**
+     * Change string dateTime to object DateTime
+     * @param  array  $billets
+     * @return array $billets
+     */
+    public function dateTimeInArray(array $billets)
+    {
+      for($i = 0; $i < count($billets); ++$i){
+      $billets[$i]['visitDate']=new \DateTime($billets[$i]['visitDate']['date']);
+      $billets[$i]['birthDate']=new \DateTime($billets[$i]['birthDate']['date']);
+      }
+      return $billets;
     }
 
     /**

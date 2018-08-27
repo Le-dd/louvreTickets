@@ -1,33 +1,56 @@
 <?php
 
 namespace App\Service;
-
-use App\Service\SessionService;
-
-
-class SwiftMailerService
-{
-
-  public function mail($value, \Swift_Mailer $mailer,SessionService $sessionService){
-    $uuidSession = $request->cookies->get('Uuid');
-    $nameSession = $sessionService->getIdSession($uuidSession);
-    $valueSession = getSession($nameSession);
+use Symfony\Component\DependencyInjection\ContainerInterface;
+use NotFloran\MjmlBundle\Mjml;
 
 
-    $message = (new \Swift_Message('Hello Email'))
-        ->setFrom('send@example.com')
-        ->setTo('recipient@example.com')
+class SwiftMailerService {
+
+    /**
+     * @var \Swift_Mailer
+     */
+    private $mailer;
+    /**
+     * @var \Twig_Environment
+     */
+    private $twig;
+
+    /**
+     * @var Mjml
+     */
+    private $mjml;
+
+    public function __construct(\Swift_Mailer $mailer, \Twig_Environment $twig, Mjml $mjml)
+    {
+        $this->mailer = $mailer;
+        $this->twig = $twig;
+        $this->mjml =$mjml ;
+    }
+
+  public function mailBooking(array $bookingValue, string $email, $totalPay){
+
+    $message = (new \Swift_Message('Vos billets pour le louvre'))
+        ->setFrom('louvretikets@mail.le-dev-web.com')
+        ->setTo($email)
         ->setBody(
-          $this->renderView('devisEtBillet.mjml.twig',['valueSession' => $valueSession ]),
-          'text/mjml'
+          $this->mjml->render(
+            $this->twig->render('emails/devisEtBillet.mjml.twig',[
+                  'bookingValue' => $bookingValue,
+                  'totalPay' => $totalPay
+                ])
+        ),
+        'text/html'
         )
-        >addPart(
-            $this->renderView(
-                'emails/registration.txt.twig',['valueSession' => $valueSession ]),
+        ->addPart(
+            $this->twig->render('emails/devisEtBillet.text.twig',[
+                  'bookingValue' => $bookingValue,
+                  'totalPay' => $totalPay
+                ]),
             'text/plain'
         );
 
-    $mailer->send($message);
+    $this->mailer->send($message);
 
 
 }

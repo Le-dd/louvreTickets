@@ -1,0 +1,33 @@
+
+{% for billet in bookingValue %}
+-----------------------------------------------------------------------
+Nom : {{billet.name}} {{billet.firstName}}
+Type du billet : {{billet.nameRate }}
+Durée de la visite : la " {{billet.nameType}} "
+-----------------------------------------------------------------------
+Prix : {{billet.priceRate}} €
+-----------------------------------------------------------------------
+{% endfor %}
+***********************************************************************
+Total : {{totalPay}} €
+***********************************************************************
+
+{% for billet in bookingValue %}
+.......................................................................
+
+Nom : {{billet.name}} {{billet.firstName}}
+Pays : {{billet.nameCountry}}
+Date de naissance : {{billet.birthDate | date("d/m/Y")}}
+
+Type du billet : {{billet.nameRate }}
+Durée de la visite : la " {{billet.nameType}} "
+Date de la visite : {{billet.visitDate | date("d/m/Y")}}
+
+.......................................................................
+{{billet.code}}
+.......................................................................
+{% if billet.nameRate == 'Réduit' %}
+Attention : présenter un justificatif en casse
+.......................................................................
+{% endif %}
+{% endfor %}

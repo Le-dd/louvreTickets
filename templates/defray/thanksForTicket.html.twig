@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.5.1/flatpickr.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.5.1/themes/dark.css">
+{% endblock %}
+
+{% block title %} Billeterie : Remerciement {% endblock %}
+
+{% block body %}
+  <main class="Remerciement index ">
+    <section class="container ">
+      <div class="part2">
+        <h1>Merci pour votre achat</h1>
+
+        <h2>Si les email n'arrive pas Renvoyer le en cliquant sur le bouton :<h2>
+          <form  action="{{ path('thanksForTicket') }}" method="post">
+            <input name="bookingValue" type="hidden" value="{{bookingValue}}">
+            <button type="submit" class="btn btn-primary">Renvoyer</button>
+          </form>
+        </div>
+    </section>
+  </main>
+{% endblock %}
