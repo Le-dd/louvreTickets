@@ -53,7 +53,6 @@ class NumberVisitValidator extends ConstraintValidator
 
       $repoBooking= $this->entityManager->getRepository(Booking::class);
       $countDate= $repoBooking->countAllDay($value->format('Y-m-d'));
-
       $valuePlus = intval($this->session->get("valide_{$uuidSession}"));
       $valueCount = intval($countDate[0][1]) + $sessionCount + $valuePlus;
       if($valuePlus>0){

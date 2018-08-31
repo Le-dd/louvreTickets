@@ -21,14 +21,13 @@ class ValideDateValidator extends ConstraintValidator
         $Tuesday = date("N" ,strtotime( $dateValue));
         $now = date_format(new \DateTime(),"Y-m-d");
 
-
-        if ($Tuesday == 2) {
-            $this->context->buildViolation($constraint->messageTuesday)
+        if (in_array($dateValue, $arrayData)) {
+            $this->context->buildViolation($constraint->messageHoliday)
                 ->setParameter('{{ date }}', date_format($value,"d/m/Y"))
                 ->addViolation();
         }
-        if (in_array($dateValue, $arrayData)) {
-            $this->context->buildViolation($constraint->messageHoliday)
+        if ($Tuesday == 2) {
+            $this->context->buildViolation($constraint->messageTuesday)
                 ->setParameter('{{ date }}', date_format($value,"d/m/Y"))
                 ->addViolation();
         }
