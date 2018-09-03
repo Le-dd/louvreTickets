@@ -31,7 +31,6 @@ class NumberVisitValidatorTest extends TestCase
       $session = new Session(new MockArraySessionStorage());
 
       $bookingRepository = $this->createMock(BookingRepository::class);
-
       $bookingRepository->expects($this->any())
         ->method('countAllDay')
         ->willReturn($countDate);
