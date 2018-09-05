@@ -321,9 +321,7 @@ html .badge{
 
 .quote .part2{
   padding: 60px 0;
-  display: flex;
-  justify-content:space-between;
-  align-items: center;
+
 
 }
 
@@ -432,9 +430,7 @@ path[Attributes Style] {
 }
 
 html body .Remerciement h1 {
-  margin-top : 580px;
-  margin-bottom : 70px;
-  font-size: 3rem;
+  margin-top : 50px;
 
 }
 html body .Remerciement h2 {
@@ -443,24 +439,60 @@ color: #000;
 }
 html body .Remerciement .btn-primary{
   border-radius: 100px;
-  margin-bottom : 580px;
+
 }
 
-@media screen and (min-width: 360px) {
-  html body .Remerciement .btn-primary{
-    margin-bottom : 780px;
+.flatpickr-day.selected{
+  background: #fd6b35;
+  border-color: #fd6b35;
+}
+
+
+@media screen and (min-width: 500px) {
+  .quote .part2{
+    padding: 60px 0;
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+
   }
-  html body .Remerciement h1 {
-    margin-top : 780px;
+  .quote .part1{
+    margin-bottom : 50px;
   }
+  .quote .part2{
+    margin-bottom : 50px;
+  }
+  .defray .part1 {
+    margin-bottom: 125px;
+}
+
+html body .Remerciement .btn-primary{
+  margin-bottom : 232px;
+}
+html body .Remerciement h1 {
+  margin-top : 233px;
+}
+
 }
 @media screen and (min-width: 750px) {
   html body .Remerciement .btn-primary{
-    margin-bottom : 375px;
+    margin-bottom : 265px;
   }
   html body .Remerciement h1 {
-    margin-top : 375px;
+    margin-top : 265px;
   }
+
+  .quote .part1{
+    margin-bottom : 80px;
+  }
+  .quote .part2{
+    margin-bottom : 80px;
+  }
+
+  .defray .part1 {
+    margin-bottom: 185px;
+}
+
 }
 @media screen and (min-width: 1000px) {
   .quote-booking {
@@ -484,18 +516,43 @@ html body .Remerciement .btn-primary{
 
   }
   html body .Remerciement .btn-primary{
-    margin-bottom : 415px;
+    margin-bottom : 440px;
   }
   html body .Remerciement h1 {
-    margin-top : 415px;
+    margin-top : 440px;
   }
 
+  .quote .part1{
+    margin-bottom : 240px;
+  }
+  .quote .part2{
+    margin-bottom : 240px;
+  }
+
+  .index .part2 {
+      margin-bottom: 40px;
+  }
+
+  .defray .part1 {
+    margin-bottom: 525px;
+}
+
+}
   @media screen and (min-width: 1025px) {
     html body .Remerciement .btn-primary{
-      margin-bottom : 190px;
+      margin-bottom : 180px;
     }
     html body .Remerciement h1 {
-      margin-top : 190px;
+      margin-top : 180px;
     }
+    .quote .part1{
+      margin-bottom : 10px;
+    }
+    .quote .part2{
+      margin-bottom : 10px;
+    }
+    .defray .part1 {
+      margin-bottom: 150px;
+  }
   }
 }
