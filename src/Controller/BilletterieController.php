@@ -25,7 +25,7 @@ class BilletterieController extends Controller
       SessionService $sessionService
       )
     {
-      
+
       $booking = new Booking();
       $form = $this->createForm(BookingType::class,$booking);
       $newUuid = $sessionService->setUuidCookie($request);
@@ -40,12 +40,13 @@ class BilletterieController extends Controller
 
 
       $nameSession = $sessionService->getIdSession($uuidSession);
-      $valueRequest = $request->request->get($form->getName());
+
 
 
 
         if ($request->isMethod('POST'))
         {
+          $valueRequest = $request->request->get($form->getName());
           $sessionService->setSessionValide($uuidSession,1);
           $formResponse= $bookingResult->dateTimeInBooking($valueRequest);
           $form->submit($formResponse);

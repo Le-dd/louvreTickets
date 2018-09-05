@@ -64,7 +64,7 @@ class BookingValueService
 
 
       }
-
+      
       return $response;
 
     }
