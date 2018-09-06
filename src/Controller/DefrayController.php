@@ -28,27 +28,37 @@ class DefrayController extends Controller
 
        $uuidSession = $request->cookies->get('Uuid');
        $nameSession = $sessionService->getIdSession($uuidSession);
+       $nameSessionResultLast = $sessionService->getIdSession($uuidSession,"resultLast_");
+       $sessionService->newSession($nameSessionResultLast,json_encode([]));
+       $testeErreur = $sessionService->ArrayInSessionEmpty($nameSessionResultLast);
 
-       if (!$request->isMethod('POST'))
+       if (!$request->isMethod('POST') && !$testeErreur)
        {
          $bookingResult->secondValidNumbers($nameSession,$this->get('validator'));
-         $sessionService->removeSession($sessionService->getIdSessionValide($uuidSession));
+         $sessionService->removeSession($sessionService->getIdSession($uuidSession,"valide_"));
        }
        $form = $this->createForm(StripeType::class);
        $form->handleRequest($request);
 
     if ($form->isSubmitted() && $form->isValid()) {
           $payValue = $request->request->get($form->getName());
-          $bookingResult->payAndAddToBooking($nameSession,$payValue);
-          $bookingValue = $bookingResult->addValueToBooking($nameSession);
+          $bookingResult->payAndAddToBooking($nameSession,$nameSessionResultLast,$payValue);
+          $bookingValue = $bookingResult->addValueToBooking($nameSessionResultLast);
           $totalPay = $bookingResult->additionPrice($bookingValue);
           $Swift->mailBooking($bookingValue,$payValue['email'],$totalPay);
           return $this->redirectToRoute('thanksForTicket', [], 301);
 
         }
 
+    $erreurCB = null;
+    if($testeErreur)
+    {
+      $erreurCB = 'erreur';
+    }
+
          return $this->render('defray/defray.html.twig', [
              'formStripe' => $form->createView(),
+             'erreurCB' => $erreurCB
          ]);
      }
 
@@ -62,11 +72,11 @@ class DefrayController extends Controller
        SwiftMailerService $Swift
        )
        {
-
+         //resultLast_
          if (!$request->isMethod('POST'))
          {
            $uuidSession = $request->cookies->get('Uuid');
-           $nameSession = $sessionService->getIdSession($uuidSession);
+           $nameSession = $sessionService->getIdSession($uuidSession,"resultLast_");
            $bookingValue = json_encode($bookingResult->addValueToBooking($nameSession));
            $sessionService->removeSession($nameSession);
          }

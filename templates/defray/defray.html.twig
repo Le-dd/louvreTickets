@@ -14,6 +14,9 @@
     <section class="container ">
       <div class="part1">
         <h1>Choisissez vos billets</h1>
+        {% if erreurCB is not null %}
+        <p class="justify-rate "><span class="justify-rate-badge text-uppercase badge badge-warning">Warning</span> <span class="justify-rate-text text-warning">une erreur est survenue veuillez re-remplire le formulaire </span></p>
+        {% endif %}
           {{ form_start(formStripe, {'attr':{'id': 'payment-form'}}) }}
             {{ form_row(formStripe.name, { 'attr':{'placeholder': "Nom"} , 'label': 'Votre nom' }) }}
             {{ form_row(formStripe.firstName, { 'attr':{'placeholder': "Prénom"} ,  'label': 'Votre prénom' }) }}

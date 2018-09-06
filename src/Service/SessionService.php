@@ -26,13 +26,12 @@ class SessionService
 
 /**
  * créate new session value
- * @param  Uuid $uuid
+ * @param string  $sessionName 
  */
-  public function newSession($uuid){
-    if(empty($this->session->get($this->getIdSession($uuid)))){
-      $this->session->set($this->getIdSession($uuid), json_encode([]));
-      $this->session->set($this->getIdSessionValide($uuid), '0');
-    }
+  public function newSession($sessionName,$value){
+    if(empty($this->session->get($sessionName))){
+      $this->session->set($sessionName, $value);
+      }
   }
 
   public function setSession($sessionName,$resultInSession){
@@ -55,8 +54,8 @@ class SessionService
    * @param int $value
    */
   public function setSessionValide($uuid ,$value){
-    if(!empty($this->session->get($this->getIdSessionValide($uuid)))){
-      $this->session->set($this->getIdSessionValide($uuid), "$value");
+    if(!empty($this->session->get($this->getIdSession($uuid,"valide_")))){
+      $this->session->set($this->getIdSession($uuid,"valide_"), "$value");
     }
   }
 
@@ -91,7 +90,6 @@ class SessionService
   }
 
 
-
   public function delUuidCookie(Request $request){
     $response = new Response();
     $response->headers->clearCookie('Uuid');
@@ -105,33 +103,20 @@ class SessionService
    * @param  $uuid
    * @return string
    */
-  public function getIdSession($uuid) :string
+  public function getIdSession($uuid,$prefix = "resultForm_") :string
   {
-    $prefix = "resultForm_";
-
     return "{$prefix}{$uuid}";
   }
 
-  /**
-   * Get Id Session valide with Uuid
-   * @param  $uuid
-   * @return string
-   */
-  public function getIdSessionValide($uuid) :string
-  {
-    $prefix = "valide_";
-
-    return "{$prefix}{$uuid}";
-  }
 
   /**
    * Array In Session is'nt Empty
    * @param  $uuid
    * @return bool
    */
-  public function ArrayInSessionEmpty($uuid) :bool
+  public function ArrayInSessionEmpty($sessionName) :bool
   {
-    if($this->session->get( $this->getIdSession($uuid)) !== json_encode([])){
+    if($this->session->get($sessionName) !== json_encode([])){
       return true;
     }else{
       return false;

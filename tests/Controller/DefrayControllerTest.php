@@ -72,7 +72,7 @@ class DefrayControllerTest extends WebTestCase
  {
    $client = static::createClient();
    $uuid = uniqid();
-   $prefix = "resultForm_";
+   $prefix = "resultLast_";
    $session = $client->getContainer()->get('session');
    $session->set("{$prefix}{$uuid}", json_encode($fakeValue));
    $session->save();

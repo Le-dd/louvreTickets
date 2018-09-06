@@ -36,11 +36,11 @@ class BilletterieController extends Controller
         $request->cookies->set('Uuid',$newUuid);
       }
       $uuidSession = $request->cookies->get('Uuid');
-      $sessionService->newSession($uuidSession);
-
 
       $nameSession = $sessionService->getIdSession($uuidSession);
-
+      $nameSessionValid = $sessionService->getIdSession($uuidSession,"valide_");
+      $sessionService->newSession($nameSession,json_encode([]));
+      $sessionService->newSession($nameSessionValid,'0');
 
 
 
@@ -59,7 +59,7 @@ class BilletterieController extends Controller
           }
         }
         $formBillet = null;
-        if($sessionService->ArrayInSessionEmpty($uuidSession))
+        if($sessionService->ArrayInSessionEmpty($nameSession))
         {
           $formBillet = $bookingResult->addValueToBooking($nameSession);
         }

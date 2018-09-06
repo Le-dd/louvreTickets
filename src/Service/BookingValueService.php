@@ -64,7 +64,7 @@ class BookingValueService
 
 
       }
-      
+
       return $response;
 
     }
@@ -96,7 +96,6 @@ class BookingValueService
       }
 
 
-
     }
 
     /**
@@ -104,12 +103,11 @@ class BookingValueService
      * @param  mixed
      * @return mixed
      */
-    public function payAndAddToBooking(string $sessionName,array $result){
+    public function payAndAddToBooking(string $sessionName,string $nameSessionResultLast,array $result){
 
       $response =$this->sessionService->getSession($sessionName);
       $stripe = new StripeService;
       $customer = $stripe->createCustomer($result['token'],$result['email']);
-      $sessionArray = [];
 
       for($i = 0; $i < count($response); ++$i){
 
@@ -122,11 +120,15 @@ class BookingValueService
         $code = "{$name[0]}{$name[1]}-{$firstName[0]}{$firstName[1]}-{$numberCode}";
         $booking->setCode($code);
         $booking->setTokenCb($result['token']);
-        $this->entityManager->persist($booking);
         $type = $booking->getTypeId();
         $rate = $booking->getRateId();
         $amount = $this->choicePrice($type->getName(),$rate->getPrice());
         $stripe->simplePay($customer, $result, $amount);
+
+        $this->entityManager->persist($booking);
+
+        $this->sessionService->delEntityInSession($sessionName,0);
+
         $valueBooking = [
           'name' => $booking->getName(),
           'firstName' => $booking->getFirstName(),
@@ -140,12 +142,14 @@ class BookingValueService
           'email'=> $result['email']
         ];
 
-        $sessionArray[] =$valueBooking;
+        $SessionResultLast = $this->sessionService->getSession($nameSessionResultLast);
+        $SessionResultLast[] = $valueBooking;
+        $this->sessionService->setSession($nameSessionResultLast,$SessionResultLast);
 
 
       }
       $this->entityManager->flush();
-      $this->sessionService->setSession($sessionName,$sessionArray);
+      $this->sessionService->removeSession($sessionName);
 
     }
 
