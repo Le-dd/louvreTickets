@@ -19,8 +19,8 @@
             {{ form_row(formBooking.firstName, { 'attr':{'placeholder': "Prénom"} ,  'label': 'Votre prénom' }) }}
             {{ form_row(formBooking.country, { 'attr':{'placeholder': "Pays"} , 'label': 'Votre pays' }) }}
             {{ form_row(formBooking.typeId, { 'label': 'Vous venez visiter pour:' }) }}
-            {{ form_row(formBooking.visitDate , {'value':(formBooking.vars.value.visitDate | date('Y-m-d H:i:s') ),'attr':{'class': 'datepicker' } , 'label': 'le jour de votre visite' }) }}
-            {{ form_row(formBooking.birthDate , {'value':(formBooking.vars.value.birthDate | date('Y-m-d H:i:s') ),'attr':{'class': 'datepicker lastForm' } , 'label': 'Votre date d\'anniversaire' }) }}
+            {{ form_row(formBooking.visitDate , {'value':(formBooking.vars.value.visitDate | date('Y-m-d H:i:s') ),'attr':{'class': 'datepickerBillet' } , 'label': 'le jour de votre visite' }) }}
+            {{ form_row(formBooking.birthDate , {'value':(formBooking.vars.value.birthDate | date('Y-m-d H:i:s') ),'attr':{'class': 'datepickerBirth lastForm' } , 'label': 'Votre date d\'anniversaire' }) }}
             {{ form_row(formBooking.rateId, {'attr':{'class': 'checkWarning' }, 'label': 'Faite vous partie d\'un régime speciale (étudiant,militaire...)' }) }}
             <p class="justify-rate trans-block"><span class="justify-rate-badge text-uppercase badge badge-warning">Warning</span> <span class="justify-rate-text text-warning">présenter un justificatif en casse</span></p>
             <button type="submit" class="btn btn-danger">Ajouter un billet</button>
