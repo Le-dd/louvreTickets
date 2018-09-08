@@ -35,7 +35,7 @@ class StripeService
     ]);
 
 
-    if ($charge->failure_code != null){
+    if ($charge->failure_code !== null){
       return $this->redirectToRoute('defray', [], 301);
     }
 
