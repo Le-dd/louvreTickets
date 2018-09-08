@@ -19,10 +19,10 @@
             {{ form_row(formBooking.firstName, { 'attr':{'placeholder': "Prénom"} ,  'label': 'Votre prénom' }) }}
             {{ form_row(formBooking.country, { 'attr':{'placeholder': "Pays"} , 'label': 'Votre pays' }) }}
             {{ form_row(formBooking.typeId, { 'label': 'Vous venez visiter pour:' }) }}
-            {{ form_row(formBooking.visitDate , {'value':(formBooking.vars.value.visitDate | date('Y-m-d H:i:s') ),'attr':{'class': 'datepickerBillet' } , 'label': 'le jour de votre visite' }) }}
+            {{ form_row(formBooking.visitDate , {'value':(formBooking.vars.value.visitDate | date('Y-m-d H:i:s') ),'attr':{'class': 'datepickerBillet' } , 'label': 'Le jour de votre visite' }) }}
             {{ form_row(formBooking.birthDate , {'value':(formBooking.vars.value.birthDate | date('Y-m-d H:i:s') ),'attr':{'class': 'datepickerBirth lastForm' } , 'label': 'Votre date d\'anniversaire' }) }}
-            {{ form_row(formBooking.rateId, {'attr':{'class': 'checkWarning' }, 'label': 'Faite vous partie d\'un régime speciale (étudiant,militaire...)' }) }}
-            <p class="justify-rate trans-block"><span class="justify-rate-badge text-uppercase badge badge-warning">Warning</span> <span class="justify-rate-text text-warning">présenter un justificatif en casse</span></p>
+            {{ form_row(formBooking.rateId, {'attr':{'class': 'checkWarning' }, 'label': 'Faites vous partie d\'un régime special (étudiant,militaire...)' }) }}
+            <p class="justify-rate trans-block"><span class="justify-rate-badge text-uppercase badge badge-warning">Warning</span> <span class="justify-rate-text text-warning">présenter un justificatif en caisse</span></p>
             <button type="submit" class="btn btn-danger">Ajouter un billet</button>
 
           {{ form_end(formBooking) }}
@@ -36,7 +36,7 @@
 
       <div class="card billet-c" >
         <div class="card-header bg-primary billet-c-h">
-          <p > <span>{{billet.name}}</span> <span>{{billet.firstName}}</span> de {{billet.nameCountry}}</p>
+          <p > <span>{{billet.name}}</span> <span>{{billet.firstName}}</span> - {{billet.nameCountry}}</p>
           <form  action="{{ path('billetDelete') }}" method="post">
             <input type="hidden" name="idBillet" value="{{billet.idResponse}}">
             <button type="submit" class="btn btn-danger btnCross">X</button>
@@ -52,7 +52,7 @@
       {% endfor %}
       <a class="btn btn-primary" href="{{ path('quote')}}">Devis ▶</a>
       {% else %}
-      <p class="p-blanc">Venez decouvrir les oeuvre des maitre d'autre ages. Le musée du Louvre vous acceuil, prenez un billet!</p>
+      <p class="p-blanc">Venez decouvrir les oeuvres des maîtres d'autres âges. Le musée du Louvre vous accueille, prenez un billet!</p>
       {% endif %}
 
     </section>

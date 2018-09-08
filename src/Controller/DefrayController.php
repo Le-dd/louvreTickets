@@ -58,7 +58,7 @@ class DefrayController extends Controller
 
          return $this->render('defray/defray.html.twig', [
              'formStripe' => $form->createView(),
-             'erreurCB' => $erreurCB
+             'erreurCB' => 'erreur'
          ]);
      }
 
