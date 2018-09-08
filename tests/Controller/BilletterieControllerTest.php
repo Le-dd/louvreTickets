@@ -103,7 +103,7 @@ class BilletterieControllerTest extends WebTestCase
 
      $this->assertSame(1, $crawler->filter('html:contains("Devis ▶")')->count());
 
-     return $fakeValue;
+    
 
 
    }
