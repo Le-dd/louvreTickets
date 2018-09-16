@@ -47,6 +47,8 @@ class BilletterieController extends Controller
         if ($request->isMethod('POST'))
         {
           $valueRequest = $request->request->get($form->getName());
+          $nameSessionValidTime = $sessionService->getIdSession($uuidSession,"valideTime_");
+          $sessionService->newSession($nameSessionValidTime,$valueRequest['visitDate']);
           $sessionService->setSessionValide($uuidSession,1);
           $formResponse= $bookingResult->dateTimeInBooking($valueRequest);
           $form->submit($formResponse);

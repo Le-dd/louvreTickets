@@ -71,6 +71,8 @@ class ValideDateValidatorTest extends TestCase
 
     $tuesday=new \DateTime("next tuesday");
 
+    $sunday=new \DateTime("next sunday");
+
     $pastDay=new \DateTime("last friday");
     $arrayData = ["{$year}-05-01","{$year}-11-01","{$year}-12-25"];
     $pastDayArray = date_format($pastDay,"Y-m-d");
@@ -82,6 +84,9 @@ class ValideDateValidatorTest extends TestCase
 
     $MonthBirthDateValidator = $this->initValidator($MonthBirthDateConstraint->messageTuesday);
     $MonthBirthDateValidator->validate($tuesday, $MonthBirthDateConstraint);
+
+    $MonthBirthDateValidator = $this->initValidator($MonthBirthDateConstraint->messageSunday);
+    $MonthBirthDateValidator->validate($sunday, $MonthBirthDateConstraint);
 
     $MonthBirthDateValidator = $this->initValidator($MonthBirthDateConstraint->messageHoliday);
     $MonthBirthDateValidator->validate($holiday, $MonthBirthDateConstraint);

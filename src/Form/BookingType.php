@@ -31,6 +31,10 @@ class BookingType extends AbstractType
             ->add('birthDate',TextType::class,[
               'data'=>date_format(new \DateTime(),"Y-m-d H:i:s")
             ])
+            ->add('visitDate',TextType::class,[
+
+              'data' =>date_format(new \DateTime(),"Y-m-d H:i:s")
+            ])
             ->add('rateId', CheckboxType::class,[
                 'mapped'=>false,
                 'required' => false,
@@ -41,12 +45,7 @@ class BookingType extends AbstractType
               'choice_label' => function($rate){
                 return $rate->getLabelForm();
               }
-            ])
-            ->add('visitDate',TextType::class,[
-
-              'data' =>date_format(new \DateTime(),"Y-m-d H:i:s")
-            ])
-
+            ])            
         ;
 
 

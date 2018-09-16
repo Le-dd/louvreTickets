@@ -77,6 +77,7 @@ class Booking
      * @ORM\ManyToOne(targetEntity="App\Entity\Type", cascade={"persist", "remove"})
      * @ORM\JoinColumn(nullable=false, name="type_id")
      * @Assert\NotBlank
+     * @BookingAssert\ValidateTime
      */
     private $typeId;
 

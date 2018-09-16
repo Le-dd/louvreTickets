@@ -11,14 +11,16 @@ flatpickr('.datepickerBillet', {
           var myBadeDate1 = date.getFullYear()+"/5/1";
           var myBadeDate2 = date.getFullYear()+"/11/1";
           var myBadeDate3 = date.getFullYear()+"/12/25";
+          var day = date.getDay();
 
             if (myDate === myBadeDate1 || myDate === myBadeDate2 || myDate === myBadeDate3){
               return true;
             }
-          
-            if (date.getDay() === 2){
+
+            if (day === 2 || day === 0){
               return true;
             }
+
             if (date < myDateNow){
               return true;
             }

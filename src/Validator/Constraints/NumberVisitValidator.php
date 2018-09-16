@@ -4,7 +4,7 @@ namespace App\Validator\Constraints;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 use Symfony\Component\Validator\Exception\UnexpectedTypeException;
-use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\RequestStack;
 
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Doctrine\ORM\EntityManagerInterface;
@@ -25,12 +25,17 @@ class NumberVisitValidator extends ConstraintValidator
    */
   private $entityManager;
 
+  /**
+   * @var RequestStack
+   */
+  private $requestStack;
 
 
-  public function __construct(SessionInterface $session,EntityManagerInterface $entityManager)
+  public function __construct(SessionInterface $session,EntityManagerInterface $entityManager,RequestStack $requestStack)
     {
       $this->session =$session;
       $this->entityManager =$entityManager;
+      $this->requestStack = $requestStack;
 
     }
 
@@ -40,13 +45,13 @@ class NumberVisitValidator extends ConstraintValidator
       if (null === $value || '' === $value) {
           return;
       }
-      $request= new Request;
+      $request = $this->requestStack->getCurrentRequest();
       $uuidSession = $request->cookies->get('Uuid');
       $sessionCount = 0;
       if (!empty($this->session->has("resultForm_{$uuidSession}"))) {
         $sessionValueArray = json_decode($this->session->get("resultForm_{$uuidSession}"),true);
         for($i = 0; $i < count($sessionValueArray); ++$i){
-          if(date_format($value,"Y-m-d") === date_format($sessionValueArray[i]["visitDate"],"Y-m-d") )
+          if(date_format($value,"Y-m-d") === date_format(new \DateTime($sessionValueArray[$i]["visitDate"]),"Y-m-d") )
           $sessionCount++ ;
         }
       }

@@ -57,7 +57,6 @@ class DefrayControllerTest extends WebTestCase
       $client->getCookieJar()->set($cookie);
 
       $crawler = $client->request('GET', '/defray');
-
       $this->assertEquals(200, $client->getResponse()->getStatusCode());
 
       return $fakeValue;

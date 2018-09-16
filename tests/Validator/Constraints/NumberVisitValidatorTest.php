@@ -10,6 +10,9 @@ use Symfony\Component\Validator\ConstraintValidator;
 use Symfony\Component\Validator\Context\ExecutionContext;
 use Symfony\Component\Validator\Violation\ConstraintViolationBuilder;
 
+use Symfony\Component\HttpFoundation\RequestStack;
+use Symfony\Component\HttpFoundation\Request;
+
 use App\Validator\Constraints\NumberVisit;
 use App\Validator\Constraints\NumberVisitValidator;
 
@@ -29,6 +32,11 @@ class NumberVisitValidatorTest extends TestCase
 
       $countDate[0][1] = "$numberBooking";
       $session = new Session(new MockArraySessionStorage());
+      $request = new Request();
+      $requestStack = $this->createMock(RequestStack::class);
+      $requestStack->expects($this->any())
+        ->method('getCurrentRequest')
+        ->willReturn($request);
 
       $bookingRepository = $this->createMock(BookingRepository::class);
       $bookingRepository->expects($this->any())
@@ -62,7 +70,7 @@ class NumberVisitValidatorTest extends TestCase
         $context->expects($this->never())->method('buildViolation');
       }
 
-      $validator = new NumberVisitValidator($session,$entityManager);
+      $validator = new NumberVisitValidator($session,$entityManager,$requestStack);
 
       $validator->initialize($context);
 

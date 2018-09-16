@@ -18,7 +18,7 @@ class ValideDateValidator extends ConstraintValidator
         $year = date_format($value,"Y");
         $dateValue = date_format($value,"Y-m-d");
         $arrayData = ["{$year}-05-01","{$year}-11-01","{$year}-12-25"];
-        $Tuesday = date("N" ,strtotime( $dateValue));
+        $day = date("N" ,strtotime( $dateValue));
         $now = date_format(new \DateTime(),"Y-m-d");
 
         if (in_array($dateValue, $arrayData)) {
@@ -26,8 +26,13 @@ class ValideDateValidator extends ConstraintValidator
                 ->setParameter('{{ date }}', date_format($value,"d/m/Y"))
                 ->addViolation();
         }
-        if ($Tuesday == 2) {
+        if ($day == 2) {
             $this->context->buildViolation($constraint->messageTuesday)
+                ->setParameter('{{ date }}', date_format($value,"d/m/Y"))
+                ->addViolation();
+        }
+        if ($day == 7) {
+            $this->context->buildViolation($constraint->messageSunday)
                 ->setParameter('{{ date }}', date_format($value,"d/m/Y"))
                 ->addViolation();
         }
