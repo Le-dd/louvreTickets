@@ -540,16 +540,16 @@ html body .Remerciement h1 {
 }
   @media screen and (min-width: 1025px) {
     html body .Remerciement .btn-primary{
-      margin-bottom : 230px;
+      margin-bottom : 250px;
     }
     html body .Remerciement h1 {
-      margin-top : 230px;
+      margin-top : 250px;
     }
     .quote .part1{
-      margin-bottom : 30px;
+      margin-bottom : 50px;
     }
     .quote .part2{
-      margin-bottom : 30px;
+      margin-bottom : 50px;
     }
     .defray .part1 {
       margin-bottom: 150px;
