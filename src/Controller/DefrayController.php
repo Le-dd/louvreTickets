@@ -30,6 +30,8 @@ class DefrayController extends Controller
        $nameSession = $sessionService->getIdSession($uuidSession);
        $nameSessionResultLast = $sessionService->getIdSession($uuidSession,"resultLast_");
        $sessionService->newSession($nameSessionResultLast,json_encode([]));
+       $nameSessionError = $sessionService->getIdSession($uuidSession,"error_");
+       $sessionService->newSession($nameSessionError,json_encode([]));
        $testeErreur = $sessionService->ArrayInSessionEmpty($nameSessionResultLast);
 
        if (!$request->isMethod('POST') && !$testeErreur)
@@ -41,8 +43,9 @@ class DefrayController extends Controller
        $form->handleRequest($request);
 
     if ($form->isSubmitted() && $form->isValid()) {
+          $sessionService->setSession($nameSessionError,[]);
           $payValue = $request->request->get($form->getName());
-          $bookingResult->payAndAddToBooking($nameSession,$nameSessionResultLast,$payValue);
+          $bookingResult->payAndAddToBooking($nameSession,$nameSessionResultLast,$payValue,$nameSessionError);
           $bookingValue = $bookingResult->addValueToBooking($nameSessionResultLast);
           $totalPay = $bookingResult->additionPrice($bookingValue);
           $Swift->mailBooking($bookingValue,$payValue['email'],$totalPay);
@@ -51,7 +54,8 @@ class DefrayController extends Controller
         }
 
     $erreurCB = null;
-    if($testeErreur)
+
+    if($sessionService->ArrayInSessionEmpty($nameSessionError))
     {
       $erreurCB = 'erreur';
     }
@@ -79,6 +83,7 @@ class DefrayController extends Controller
            $nameSession = $sessionService->getIdSession($uuidSession,"resultLast_");
            $bookingValue = json_encode($bookingResult->addValueToBooking($nameSession));
            $sessionService->removeSession($nameSession);
+           $sessionService->removeSession($sessionService->getIdSession($uuidSession,"error_"));
          }
 
          if ($request->isMethod('POST'))

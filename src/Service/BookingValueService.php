@@ -103,11 +103,11 @@ class BookingValueService
      * @param  mixed
      * @return mixed
      */
-    public function payAndAddToBooking(string $sessionName,string $nameSessionResultLast,array $result){
+    public function payAndAddToBooking(string $sessionName,string $nameSessionResultLast,array $result,string $nameSessionError){
 
       $response =$this->sessionService->getSession($sessionName);
-      $stripe = new StripeService;
-      $customer = $stripe->createCustomer($result['token'],$result['email']);
+      $stripe = new StripeService($this->sessionService);
+      $customer = $stripe->createCustomer($result['token'],$result['email'],$nameSessionError);
 
       for($i = 0; $i < count($response); ++$i){
 
@@ -123,7 +123,7 @@ class BookingValueService
         $type = $booking->getTypeId();
         $rate = $booking->getRateId();
         $amount = $this->choicePrice($type->getName(),$rate->getPrice());
-        $stripe->simplePay($customer, $result, $amount);
+        $stripe->simplePay($customer, $result, $amount,$nameSessionError);
 
         $this->entityManager->persist($booking);
 
